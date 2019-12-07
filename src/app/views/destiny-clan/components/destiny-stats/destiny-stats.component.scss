@@ -1,0 +1,42 @@
+@import '../../../../assets/scss/includes';
+
+mat-tab-group {
+    flex: 1 1 auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1px;
+}
+
+.asc-destiny-stats {
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    margin: -1px;
+}
+
+.asc-destiny-stat-tile {
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+    >div {
+        flex: 1 0 135px;
+        padding: $spacing-small;
+    }
+    h4,
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.asc-destiny-stats-loading {
+    height: 100%;
+    @include vertical-center;
+    @include justify-center;
+}

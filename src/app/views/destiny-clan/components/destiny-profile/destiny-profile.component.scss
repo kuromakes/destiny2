@@ -1,0 +1,30 @@
+@import '../../../../assets/scss/includes';
+
+.asc-destiny-profile-loading {
+    height: 100%;
+    @include vertical-center;
+    @include justify-center;
+}
+
+.asc-destiny-profile-header {
+    display: flex;
+    width: 100%;
+    @include space-between;
+    h2 {
+        margin-top: 0;
+    }
+    @media #{$mobile} {
+        flex-direction: column;
+    }
+}
+
+.asc-destiny-profile-header-characters {
+    padding-top: .83rem;
+}
+
+.asc-destiny-profile-wrap,
+asc-destiny-stats {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}

@@ -1,0 +1,251 @@
+<ng-container *ngIf="!failure else failed">
+        <div style="margin-bottom: 1rem;">
+                <mat-form-field style="width: 200px;">
+                    <h4
+                        asc-color="primary"
+                        style="margin-top: 0;"
+                    >
+                        Select Activity
+                    </h4>
+                    <mat-select [(value)]="activity" style="display: block;">
+                        <mat-option value="crucible">Crucible</mat-option>
+                        <mat-option value="pve">PVE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+            </div>
+            <div class="row">
+                <ng-container *ngIf="activity === 'pve' else PvPLeaderboards">
+                    <!-- RAID CLEARS LEADERBOARD -->
+                    <ng-container *ngIf="!raidClearsLeaderboard else Top5RaidClears">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5RaidClears>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Raid Clears"
+                                [leaderboard]="raidClearsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                    <!-- RAID TIME PER CLEAR LEADERBOARD -->
+                    <ng-container *ngIf="!raidTimePerClearLeaderboard else Top5RaidTimePerClear">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5RaidTimePerClear>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Raid Time Per Clear"
+                                [leaderboard]="raidTimePerClearLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                    <!-- RAID KILLS LEADERBOARD -->
+                    <ng-container *ngIf="!raidKillsLeaderboard else Top5RaidKills">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5RaidKills>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Raid Kills"
+                                [leaderboard]="raidKillsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                    <!-- DEATHS PER RAID LEADERBOARD -->
+                    <ng-container *ngIf="!deathsPerRaidLeaderboard else Top5DeathsPerRaid">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5DeathsPerRaid>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Deaths Per Raid"
+                                [leaderboard]="deathsPerRaidLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                    <!-- STRIKE CLEARS LEADERBOARD -->
+                    <ng-container *ngIf="!strikeClearsLeaderboard else Top5StrikeClears">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5StrikeClears>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Strike Clears"
+                                [leaderboard]="strikeClearsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                    <!-- STRIKE KILLS LEADERBOARD -->
+                    <ng-container *ngIf="!strikeKillsLeaderboard else Top5StrikeKills">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5StrikeKills>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Strike Kills"
+                                [leaderboard]="strikeKillsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <!-- PVP LEADERBOARDS -->
+                <ng-template #PvPLeaderboards>
+                    <!-- KD LEADERBOARD -->
+                    <ng-container *ngIf="!kdLeaderboard else Top5Kd">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Kd>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="KD"
+                                [leaderboard]="kdLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+                    </ng-template>
+            
+                    <!-- KDA LEADERBOARD -->
+            
+                    <ng-container *ngIf="!kdaLeaderboard else Top5Kda">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Kda>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="KDA"
+                                [leaderboard]="kdaLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+            
+                    </ng-template>
+            
+                    <!-- EFFICIENCY LEADERBOARD -->
+            
+                    <ng-container *ngIf="!efficiencyLeaderboard else Top5Efficiency">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Efficiency>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Efficiency"
+                                [leaderboard]="efficiencyLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+            
+                    </ng-template>
+            
+                    <!-- KILLS LEADERBOARD -->
+            
+                    <ng-container *ngIf="!killsLeaderboard else Top5Kills">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Kills>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Kills"
+                                [leaderboard]="killsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+            
+                    </ng-template>
+            
+                    <!-- ASSISTS LEADERBOARD -->
+            
+                    <ng-container *ngIf="!assistsLeaderboard else Top5Assists">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Assists>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Assists"
+                                [leaderboard]="assistsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+            
+                    </ng-template>
+            
+                    <!-- DEFEATS LEADERBOARD -->
+            
+                    <ng-container *ngIf="!defeatsLeaderboard else Top5Defeats">
+                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                            <mat-spinner
+                                size="36"
+                                color="primary"
+                            ></mat-spinner>
+                        </div>
+                    </ng-container>
+                    <ng-template #Top5Defeats>
+                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                            <asc-destiny-leaderboard
+                                leaderboardTitle="Defeats"
+                                [leaderboard]="defeatsLeaderboard"
+                            ></asc-destiny-leaderboard>
+                        </div>
+            
+                    </ng-template>
+                </ng-template>
+            </div>
+            <asc-backdrop>
+                <asc-destiny-profile [player]="selectedPlayer"></asc-destiny-profile>
+            </asc-backdrop>            
+</ng-container>
+<ng-template #failed>
+    <div style="padding: 4.263rem 1.618rem; text-align: center;">
+        <h1 asc-color="warn">Failed to load leaderboards</h1>
+    </div>
+</ng-template>

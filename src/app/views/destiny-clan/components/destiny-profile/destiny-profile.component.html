@@ -1,0 +1,76 @@
+<ng-container *ngIf="destinyProfile else loading">
+    <div class="asc-destiny-profile-wrap">
+        <ng-container *ngIf="showBanner">
+            <asc-hero [bannerUrl]="profileTheme">
+                <div class="asc-destiny-profile-header">
+                    <div class="asc-destiny-profile-header-info">
+                        <h2 asc-color="light">
+                            <span
+                                [matTooltip]="destinyProfile.bungieProfile.bio ? destinyProfile.bungieProfile.bio : ''"
+                                matTooltipPosition="after"
+                            >
+                                {{destinyProfile.name}}
+                            </span>
+                        </h2>
+                        <div>
+                            <span asc-color="primary">
+                                <span asc-color="light">Total Hours</span>
+                                {{destinyProfile.hoursPlayed}}
+                            </span>
+                        </div>
+                        <div>
+                            <span asc-color="primary">
+                                <span asc-color="light">Last Played</span>
+                                {{destinyProfile.lastPlayed | date}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-profile-header-characters">
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            [matMenuTriggerFor]="characterSelection"
+                            style="padding-right: 0.5em"
+                        >
+                            {{selectedCharacterClass ? selectedCharacterClass : 'All'}}
+                            <mat-icon>expand_more</mat-icon>
+                        </button>
+                        <mat-menu
+                            #characterSelection="matMenu"
+                            [hasBackdrop]="true"
+                            [backdropClass]="'asc-destiny-character-select-backdrop'"
+                        >
+                            <button
+                                mat-menu-item
+                                (click)="loadCharacter(); selectedCharacterClass = 'All'"
+                            >
+                                All
+                            </button>
+                            <ng-container *ngFor="let character of destinyProfile.characters">
+                                <button
+                                    mat-menu-item
+                                    (click)="loadCharacter(character)"
+                                >
+                                    {{character.characterClass}}
+                                </button>
+                            </ng-container>
+                        </mat-menu>
+                    </div>
+                </div>
+            </asc-hero>
+        </ng-container>
+        <asc-destiny-stats
+            #stats
+            [pvpStats]="pvpStats"
+            [pveStats]="pveStats"
+        ></asc-destiny-stats>
+    </div>
+</ng-container>
+<ng-template #loading>
+    <div class="asc-destiny-profile-loading">
+        <mat-spinner
+            size="48"
+            color="primary"
+        ></mat-spinner>
+    </div>
+</ng-template>

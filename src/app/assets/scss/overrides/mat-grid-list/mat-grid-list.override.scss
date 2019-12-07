@@ -1,0 +1,12 @@
+@import '../../includes';
+
+mat-grid-list.mat-grid-list {
+    mat-grid-tile.mat-grid-tile {
+        figure.mat-figure {
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: $spacing-normal;
+        }
+    }
+}

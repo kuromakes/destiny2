@@ -1,0 +1,156 @@
+<ng-container *ngIf="pvpStats && pveStats else loading">
+    <mat-tab-group>
+        <mat-tab label="PVP">
+            <main>
+                <div class="asc-destiny-stats">
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">KD</h4>
+                            <h2 asc-color="light">{{pvpStats?.kd | number:'1.2-2'}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">KDA</h4>
+                            <h2 asc-color="light">{{pvpStats?.kda | number:'1.2-2'}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Efficiency</h4>
+                            <h2 asc-color="light">
+                                {{pvpStats?.efficiency | number:'1.2-2'}}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Kills</h4>
+                            <h2 asc-color="light">{{pvpStats?.kills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Assists</h4>
+                            <h2 asc-color="light">{{pvpStats?.assists | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Defeats</h4>
+                            <h2 asc-color="light">{{pvpStats?.defeats | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Best Single Game Kills</h4>
+                            <h2 asc-color="light">{{pvpStats?.singleGameKills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Longest Kill Spree</h4>
+                            <h2 asc-color="light">{{pvpStats?.killSpree | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Most Precision Kills</h4>
+                            <h2 asc-color="light">
+                                {{pvpStats?.mostPrecisionKills | number}}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Best Weapon Type</h4>
+                            <h2 asc-color="light">{{pvpStats?.bestWeapon}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </mat-tab>
+        <mat-tab label="PVE">
+            <main>
+                <div class="asc-destiny-stats">
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Raid Clears</h4>
+                            <h2 asc-color="light">{{pveStats?.raidClears | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Raid Kills</h4>
+                            <h2 asc-color="light">{{pveStats?.raidKills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Kills Per Raid</h4>
+                            <h2 asc-color="light">
+                                {{pveStats?.killsPerRaid | number:'1.0-1'}}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Best Raid Kills</h4>
+                            <h2 asc-color="light">{{pveStats?.bestRaidKills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Deaths Per Raid</h4>
+                            <h2 asc-color="light">{{pveStats?.deathsPerRaid | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-4">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Raid Time Per Clear</h4>
+                            <h2 asc-color="light">
+                                {{parseSeconds(pveStats?.raidTimePerClear)}}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Strike Clears</h4>
+                            <h2 asc-color="light">{{pveStats?.strikeClears | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Strike Kills</h4>
+                            <h2 asc-color="light">{{pveStats?.strikeKills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Best Strike Kills</h4>
+                            <h2 asc-color="light">{{pveStats?.bestStrikeKills | number}}</h2>
+                        </div>
+                    </div>
+                    <div class="asc-destiny-stat-tile col-xs-12 col-sm-6 col-md-3">
+                        <div asc-background-color="primary">
+                            <h4 asc-color="light">Kills Per Strike</h4>
+                            <h2 asc-color="light">
+                                {{pveStats?.killsPerStrike | number:'1.0-1'}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </mat-tab>
+    </mat-tab-group>
+</ng-container>
+<ng-template #loading>
+        <div class="asc-destiny-stats-loading">
+                <ng-container *ngIf="!failure else failed">
+                        <mat-spinner size="36"></mat-spinner>
+                </ng-container>
+                <ng-template #failed>
+                    <h2 asc-color="warn">Failed to load player stats</h2>
+                </ng-template>
+        </div>
+</ng-template>

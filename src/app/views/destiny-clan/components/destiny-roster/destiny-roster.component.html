@@ -1,0 +1,120 @@
+<mat-card class="clan-roster mat-elevation-z4">
+    <mat-form-field class="search-roster-wrapper">
+        <input
+            color="primary"
+            matInput
+            (input)="searchRoster($event.target.value)"
+            placeholder="Search Roster"
+            class="asc-d2-roster-search"
+        >
+    </mat-form-field>
+
+    <div
+        *ngIf="!dataSource else roster"
+        class="asc-d2-roster-loading"
+    >
+        <mat-spinner
+            diameter="48"
+            color="primary"
+        ></mat-spinner>
+    </div>
+
+    <ng-template #roster>
+        <mat-table
+            [dataSource]="dataSource"
+            id="clanRoster"
+        >
+
+            <ng-container matColumnDef="icon">
+                <mat-header-cell
+                    *matHeaderCellDef
+                    class="asc-d2-roster-icon"
+                ></mat-header-cell>
+                <mat-cell
+                    *matCellDef="let player"
+                    class="asc-d2-roster-icon"
+                >
+                    <div class="asc-d2-roster-icon-wrap">
+                        <img
+                            [src]="'https://www.bungie.net/' + player.icon"
+                            alt="{{player.name}}"
+                        >
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <mat-header-cell
+                    *matHeaderCellDef
+                    class="asc-d2-roster-name"
+                >
+                    Username
+                </mat-header-cell>
+                <mat-cell
+                    *matCellDef="let player"
+                    class="asc-d2-roster-name"
+                >
+                    {{player.name}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell
+                    *matHeaderCellDef
+                    class="asc-d2-roster-status"
+                >
+                    Status
+                </mat-header-cell>
+                <mat-cell
+                    *matCellDef="let player"
+                    color="primary"
+                    class="asc-d2-roster-status"
+                >
+                    <ng-container *ngIf="player.status === 'Online' else offline">
+                        <strong asc-color="accent">{{player.status}}</strong>
+                    </ng-container>
+                    <ng-template #offline>
+                        {{player.status}}
+                    </ng-template>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="profile">
+                <mat-header-cell
+                    *matHeaderCellDef
+                    class="asc-d2-roster-profile"
+                >
+                    Profile
+                </mat-header-cell>
+                <mat-cell
+                    *matCellDef="let player"
+                    class="asc-d2-roster-profile"
+                >
+                    <button
+                        mat-stroked-button
+                        color="primary"
+                    >
+                        View Profile
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+                *matHeaderRowDef="rosterTableColumnNames"
+                class="asc-d2-roster-header-row"
+            ></mat-header-row>
+            <mat-row
+                *matRowDef="let player; columns: rosterTableColumnNames;"
+                class="asc-d2-roster-row"
+                (click)="viewPlayer(player)"
+            ></mat-row>
+
+        </mat-table>
+    </ng-template>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+</mat-card>
+
+<asc-backdrop (isOpenChange)="updateRoute($event)">
+    <asc-destiny-profile [player]="selectedPlayer"></asc-destiny-profile>
+</asc-backdrop>

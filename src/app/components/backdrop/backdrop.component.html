@@ -1,0 +1,21 @@
+<ng-container *ngIf="isOpen">
+    <div class="asc-backdrop">
+        <div class="asc-backdrop-background" (click)="close()">
+            <button class="asc-backdrop-close" mat-icon-button>
+                <mat-icon asc-color="light">close</mat-icon>
+            </button>
+        </div>
+        <div class="asc-backdrop-card">
+            <div class="asc-backdrop-content mat-elevation-z7" asc-background-color="background">
+                <ng-container *ngIf="title">
+                    <div class="asc-backdrop-title">
+                        <h1 asc-color="foreground">{{title}}</h1>
+                    </div>
+                </ng-container>
+                <div class="asc-backdrop-content">
+                    <ng-content></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

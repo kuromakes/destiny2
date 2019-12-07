@@ -1,0 +1,23 @@
+@import '../../../../assets/scss/includes';
+
+.asc-d2-leaderboard-loading {
+    display: flex;
+    padding: $spacing-largest;
+    @include vertical-center;
+    @include justify-center;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.asc-d2-leaderboard-loading {
+    padding: $spacing-largest 0;
+    text-align: center;
+}
+
+:host {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+}

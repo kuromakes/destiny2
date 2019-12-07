@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  bungieKey: 'ee65aca036a44be6bb5d90e3761f9659'
 };
 
 /*

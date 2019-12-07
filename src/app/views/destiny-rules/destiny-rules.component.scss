@@ -1,0 +1,33 @@
+mat-card {
+    margin-bottom: 1.5rem;
+    h2,
+    h3,
+    p {
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+mat-form-field {
+    margin-top: 1rem;
+    padding: 0 1rem;
+    width: 100%;
+    input {
+        display: block;
+        width: 100%;
+    }
+}
+
+mat-tab-group {
+    padding: 0 1rem;
+}

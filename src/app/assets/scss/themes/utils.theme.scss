@@ -1,0 +1,100 @@
+@import '../includes';
+
+@mixin asc-utils-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    [asc-color="primary"],
+    .asc-color-primary {
+        color: mat-color($primary);
+    }
+    [asc-color="accent"],
+    .asc-color-accent {
+        color: mat-color($accent);
+    }
+    [asc-color="warn"],
+    .asc-color-warn {
+        color: mat-color($warn);
+    }
+    [asc-color="foreground"],
+    .asc-color-foreground {
+        color: mat-color($foreground);
+    }
+    [asc-color="background"],
+    .asc-color-background {
+        color: mat-color($background);
+    }
+    [asc-color="success"],
+    .asc-color-success {
+        color: $success;
+    }
+    [asc-color="light"],
+    .asc-color-light {
+        color: $light;
+    }
+    [asc-color="dark"],
+    .asc-color-dark {
+        color: $dark;
+    }
+    [asc-background-color="primary"],
+    .asc-background-color-primary {
+        background-color: mat-color($primary);
+    }
+    [asc-background-color="accent"],
+    .asc-background-color-accent {
+        background-color: mat-color($accent);
+    }
+    [asc-background-color="warn"],
+    .asc-background-color-warn {
+        background-color: mat-color($warn);
+    }
+    [asc-background-color="success"],
+    .asc-background-color-success {
+        background-color: $success;
+    }
+    [asc-background-color="light"],
+    .asc-background-color-light {
+        background-color: $light;
+    }
+    [asc-background-color="dark"],
+    .asc-background-color-dark {
+        background-color: $dark;
+    }
+}
+
+.light-theme [asc-background-color="background"] {
+    background-color: #fafafa;
+}
+
+.dark-theme [asc-background-color="background"] {
+    background-color: #303030;
+}
+
+
+.type-smaller {
+    font-size: 0.618rem;
+  }
+  .type-small {
+    font-size: 0.875rem;
+  }
+  .type-base {
+    font-size: 1rem;
+  }
+  .type-big {
+    font-size: 1.25rem;
+  }
+  .type-large {
+    font-size: 1.618rem;
+  }
+  .type-larger {
+    font-size: 2.618rem;
+  }
+  .type-largest {
+    font-size: 4.263rem;
+  }
+  .type-jumbo {
+    font-size: 6.854rem;
+  }
+  

@@ -1,0 +1,111 @@
+<h2 asc-color="primary" style="margin-top: 0;">Destiny 2 Tournament Rules</h2>
+<p>The official Destiny 2 ruleset for {{info.name}} tournaments and scrims.</p>
+<mat-card>
+    <div>
+        <h2 asc-color="primary">Settings</h2>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <ul>
+                    <h3>
+                        <span asc-color="accent">Maps</span>
+                    </h3>
+                    <li>Burnout</li>
+                    <li>Dead Cliffs</li>
+                    <li>Endless Vale</li>
+                    <li>Gambler's Ruin</li>
+                    <li>Javelin-4</li>
+                    <li>Twilight Gap</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <ul>
+                    <h3>
+                        <span asc-color="accent">Format</span>
+                    </h3>
+                    <li>3v3 Clash</li>
+                    <li>15 minute time limit</li>
+                    <li>50 point scorel limit</li>
+                    <li>7 second respawn time</li>
+                </ul>
+            </div>
+        </div>
+        <h3>
+            <span asc-color="accent">Terms</span>
+        </h3>
+        <p>No hate speech, negative attitudes, griefing, or behavior damaging to the Ascendant or competitive community
+            will be tolerated. Additionally, cheating of any kind, including the use of 3rd party software, input mods,
+            or macros is strictly prohibitied.</p>
+        <p><strong>Violation of these terms will result in an immediate disqualification.</strong></p>
+    </div>
+</mat-card>
+<mat-card>
+    <div>
+        <h2>
+            <span asc-color="primary">Restrictions</span>
+        </h2>
+        <ul>
+            <h3>
+                <span asc-color="accent">
+                    Perks & Mods
+                </span>
+            </h3>
+            <li>No Distribution or Dynamo mods</li>
+            <li>No Full Auto shotguns</li>
+            <li>
+                <span matLine asc-color="foregournd">
+                    No super regen mods
+                </span>
+                <span matLine asc-color="foreground" style="font-size: 0.8em; opacity: 0.6">Pump Action, Remote
+                    Connection, Light Reactor, etc.</span>
+            </li>
+            <li>No 5th column artifact mods</li>
+        </ul>
+        <ul>
+            <h3>
+                <span asc-color="accent">Team Class Composition</span>
+            </h3>
+            <li>No more than two (2) of each class</li>
+            <li>No duplicate subclasses</li>
+            <li>No Ward of Dawn</li>
+        </ul>
+        <ul>
+            <h3>
+                <span asc-color="accent">Misc</span>
+            </h3>
+            <li>No precision special weapons on Way of the Wraith</li>
+            <li>No swapping exotic ARMOR after round start</li>
+            <li>No three-peeking with emotes or swords</li>
+            <li>No jumping/glitching off the map</li>
+            <li>Intentional suicide claims will be reviewed after the match, so play it out</li>
+        </ul>
+    </div>
+</mat-card>
+<mat-card>
+    <div>
+        <h2 asc-color="primary">Ban List</h2>
+        <mat-tab-group>
+            <mat-tab label="Weapons">
+                <mat-form-field>
+                    <input ascDebounceInput matInput name="search" placeholder="Search Banned Weapons" title="Search Banned Weapons"
+                        type="search" (debouncedOutput)="searchWeapons($event)" />
+                </mat-form-field>
+                <ul *ngIf="weaponList | async" [@listAnimation]="(weaponList | async).length">
+                    <li *ngFor="let weapon of weaponList | async">
+                        {{weapon}}
+                    </li>
+                </ul>
+            </mat-tab>
+            <mat-tab label="Armor">
+                <mat-form-field>
+                    <input ascDebounceInput matInput name="search" placeholder="Search Banned Armor" title="Search Banned Armor"
+                        type="search" (debouncedOutput)="searchArmor($event)" />
+                </mat-form-field>
+                <ul *ngIf="armorList | async" [@listAnimation]="(armorList | async).length">
+                    <li *ngFor="let armorPiece of armorList | async">
+                        {{armorPiece}}
+                    </li>
+                </ul>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</mat-card>

@@ -1,0 +1,28 @@
+@import '~@angular/material/theming';
+@include mat-core();
+@import './light-theme';
+@import './dark-theme';
+@import '../overrides/mat-select/mat-select.theme';
+@import '../overrides/mat-nav-list/mat-nav-list.theme';
+@import '../overrides/mat-snackbar/mat-snackbar.theme';
+// @import '../../../../projects/views/src/lib/games/destiny/components/destiny-stats/destiny-stats.component.theme';
+@import '../../../views/destiny-clan/components/destiny-stats/destiny-stats.component.theme';
+@import './utils.theme';
+
+@mixin custom-components-theme($theme) {
+    @include mat-select-theme($theme);
+    @include mat-nav-list-theme($theme);
+    @include mat-snackbar-theme($theme);
+    @include asc-utils-theme($theme);
+    @include asc-destiny-stats-component-theme($theme);
+}
+
+.light-theme {
+    @include angular-material-theme($light-theme);
+    @include custom-components-theme($light-theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($dark-theme);
+    @include custom-components-theme($dark-theme);
+}

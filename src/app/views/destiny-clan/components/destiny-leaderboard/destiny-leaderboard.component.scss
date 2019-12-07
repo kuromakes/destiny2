@@ -1,0 +1,75 @@
+@import '../../../../assets/scss/includes';
+
+table {
+    width: 100%;
+}
+
+mat-row {
+    cursor: pointer;
+    padding: $spacing-smallest 0;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.asc-d2-leaderboard-icon {
+    flex: 0 0 $spacing-largest;
+}
+
+.asc-d2-leaderboard-rank {
+    flex: 0 0 $spacing-larger;
+}
+
+.asc-d2-leaderboard-name span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.asc-d2-leaderboard-status {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.asc-d2-leaderboard-icon-wrap {
+    border-radius: 50%;
+    display: block;
+    height: $spacing-large;
+    overflow: hidden;
+    width: $spacing-large;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+button.asc-view-full-leaderboard {
+    margin-top: $spacing-normal;
+    width: 100%;
+}
+
+asc-backdrop {
+    asc-destiny-profile {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }    
+}
+
+.asc-full-leaderboard-wrap {
+    height: 100%;
+    overflow-y: auto;
+    @media #{$mobile} {
+        .asc-d2-leaderboard-icon {
+            display: none;
+        }
+    }
+}
+
+:host {
+    display: block;
+    width: 100%;
+}

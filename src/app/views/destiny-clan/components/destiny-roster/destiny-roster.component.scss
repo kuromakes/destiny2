@@ -1,0 +1,93 @@
+@import '../../../../assets/scss/includes';
+
+.asc-d2-roster-loading {
+    display: flex;
+    padding: $spacing-largest;
+    @include vertical-center;
+    @include justify-center;
+}
+
+mat-table {
+    width: 100%;
+}
+
+mat-header-row {
+    @media #{$mobile} {
+        display: none;
+    }
+}
+
+mat-row {
+    cursor: pointer;
+    padding: $spacing-smallest 0;
+    @media #{$mobile} {
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-small;
+        mat-cell {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+mat-cell {
+    @media #{$mobile} {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.asc-d2-roster-icon {
+    flex: 0 0 $spacing-largest;
+}
+
+.asc-d2-roster-profile {
+    flex: 0 0 10rem;
+    button {
+        width: 100%;
+    }
+}
+
+.asc-d2-roster-icon,
+.asc-d2-roster-profile {
+    @media #{$mobile} {
+        flex: 0;
+    }
+}
+
+.asc-d2-roster-icon-wrap {
+    border-radius: 50%;
+    display: block;
+    height: $spacing-large;
+    overflow: hidden;
+    width: $spacing-large;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+asc-destiny-profile {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+mat-footer-row::after,
+mat-header-row::after,
+mat-row::after {
+    @media #{$mobile} {
+        display: none;
+    }
+}
+
+:host {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+}

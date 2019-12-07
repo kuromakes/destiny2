@@ -1,0 +1,86 @@
+<h2 asc-color="primary">{{leaderboardTitle}}</h2>
+<table class="mat-elevation-z3" mat-table [dataSource]="topFive">
+    <ng-container matColumnDef="icon">
+        <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-icon"></mat-header-cell>
+        <mat-cell *matCellDef="let player" class="asc-d2-leaderboard-icon">
+            <div class="asc-d2-leaderboard-icon-wrap">
+                <img [src]="'https://www.bungie.net/' + player.player.icon" alt="{{player.player.name}}">
+            </div>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="player">
+        <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-name">
+            Player
+        </mat-header-cell>
+        <mat-cell *matCellDef="let player" class="asc-d2-leaderboard-name">
+            <span>{{player.player.name}}</span>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+        <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-status">
+            {{leaderboardTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let player" color="primary" class="asc-d2-leaderboard-status">
+            {{player.value}}
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['icon', 'player', 'value']" class="asc-d2-leaderboard-header-row">
+    </mat-header-row>
+    <mat-row *matRowDef="let player; columns: ['icon', 'player', 'value'];" class="asc-d2-leaderboard-row"
+        (click)="viewPlayer(player)"></mat-row>
+
+</table>
+<button class="asc-view-full-leaderboard" mat-stroked-button (click)="viewFullLeaderboard()">View Full Leaderboard</button>
+<asc-backdrop #FullLeaderboard>
+    <div class="asc-full-leaderboard-wrap">
+        <table class="mat-elevation-z3" mat-table [dataSource]="leaderboard">
+            <ng-container matColumnDef="icon">
+                <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-icon"></mat-header-cell>
+                <mat-cell *matCellDef="let player; let i = index" class="asc-d2-leaderboard-icon">
+                    <div class="asc-d2-leaderboard-icon-wrap">
+                        <img [src]="'https://www.bungie.net/' + player.player.icon" alt="{{player.player.name}}">
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="rank">
+                <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-rank">
+                    Rank
+                </mat-header-cell>
+                <mat-cell *matCellDef="let player" color="primary" class="asc-d2-leaderboard-rank">
+                    {{player.rank}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="player">
+                <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-name">
+                    Player
+                </mat-header-cell>
+                <mat-cell *matCellDef="let player" class="asc-d2-leaderboard-name">
+                    <span>{{player.player.name}}</span>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="value">
+                <mat-header-cell *matHeaderCellDef class="asc-d2-leaderboard-status">
+                    {{leaderboardTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let player" color="primary" class="asc-d2-leaderboard-status">
+                    {{player.value}}
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="['rank', 'icon', 'player', 'value']; sticky: true"
+                class="asc-d2-leaderboard-header-row">
+            </mat-header-row>
+            <mat-row *matRowDef="let player; columns: ['rank', 'icon', 'player', 'value'];" class="asc-d2-leaderboard-row"
+                (click)="viewPlayer(player)"></mat-row>
+        </table>
+    </div>
+</asc-backdrop>
+<asc-backdrop #Player>
+    <asc-destiny-profile [player]="selectedPlayer | async"></asc-destiny-profile>
+</asc-backdrop>

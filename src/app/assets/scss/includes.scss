@@ -1,0 +1,159 @@
+// breakpoints
+$mobile-sm:     "screen and (max-width: 360px)";
+$mobile:        "screen and (max-width: 599px)";
+$tablet:        "screen and (min-width: 600px) and (max-width: 959px)";
+$desktop-sm:    "screen and (min-width: 960px) and (max-width: 1280px)";
+$desktop:       "screen and (min-width: 1281px) and (max-width: 1919px)";
+$desktop-xl:    "screen and (min-width: 1920px)";
+
+// colors
+$light: #f9f9f9;
+$dark: #212121;
+$success: #69F0AE;
+
+// spacing
+$spacing-smallest:      0.618rem;
+$spacing-small:         1rem;
+$spacing-normal:        1.618rem;
+$spacing-large:         2.618rem;
+$spacing-larger:        4.283rem;
+$spacing-largest:       6.854rem;
+
+// Type scale
+$type-smaller:    0.618rem;
+$type-small:      0.875rem;
+$type-base:       1rem;
+$type-big:        1.25rem;
+$type-large:      1.618rem;
+$type-larger:     2.618rem;
+$type-largest:    4.263rem;
+$type-jumbo:      6.854rem;
+
+// transitions
+$transition-ease:          cubic-bezier(0.32, 0.57, 0.25, 1);
+$transition-ease-in:       cubic-bezier(0.13, 0.78, 0.3, 0.99);
+$transition-pop:           cubic-bezier(0.5, 0.9, 0.75, 1.25);
+$transition-bounce:        cubic-bezier(0.75, 0, 0.75, 1.5);
+
+// box-shadow
+@mixin boxshadow($boxshadow) {
+  -webkit-box-shadow: $boxshadow;
+  -moz-box-shadow:    $boxshadow;
+  box-shadow:         $boxshadow;
+}
+
+$boxshadow-sm-10:       0 .1em .16em 0 rgba(black, .1);
+$boxshadow-sm-20:       0 .1em .16em 0 rgba(black, .2);
+$boxshadow-sm-30:       0 .1em .16em 0 rgba(black, .3);
+$boxshadow-sm-40:       0 .1em .16em 0 rgba(black, .4);
+$boxshadow-sm-50:       0 .1em .16em 0 rgba(black, .5);
+
+$boxshadow-med-10:      0 .68em 1em -.42em rgba(black, .1);
+$boxshadow-med-20:      0 .68em 1em -.42em rgba(black, .2);
+$boxshadow-med-30:      0 .68em 1em -.42em rgba(black, .3);
+$boxshadow-med-40:      0 .68em 1em -.42em rgba(black, .4);
+$boxshadow-med-50:      0 .68em 1em -.42em rgba(black, .5);
+
+$boxshadow-lrg-10:      0 1em 1.618em -.68em rgba(black, .1);
+$boxshadow-lrg-20:      0 1em 1.618em -.68em rgba(black, .2);
+$boxshadow-lrg-30:      0 1em 1.618em -.68em rgba(black, .3);
+$boxshadow-lrg-40:      0 1em 1.618em -.68em rgba(black, .4);
+$boxshadow-lrg-50:      0 1em 1.618em -.68em rgba(black, .5);
+
+$boxshadow-xl-10:       0 1.618em 2.618em -1em rgba(black, .1);
+$boxshadow-xl-20:       0 1.618em 2.618em -1em rgba(black, .2);
+$boxshadow-xl-30:       0 1.618em 2.618em -1em rgba(black, .3);
+$boxshadow-xl-40:       0 1.618em 2.618em -1em rgba(black, .4);
+$boxshadow-xl-50:       0 1.618em 2.618em -1em rgba(black, .5);
+
+// z-index
+@mixin z-index-0 {
+  z-index: 0;
+}
+@mixin z-index-1 {
+  z-index: 100;
+}
+@mixin z-index-2 {
+  z-index: 200;
+}
+@mixin z-index-3 {
+  z-index: 300;
+}
+@mixin z-index-4 {
+  z-index: 400;
+}
+@mixin z-index-5 {
+  z-index: 500;
+}
+@mixin z-index-6 {
+  z-index: 600;
+}
+@mixin z-index-7 {
+  z-index: 700;
+}
+@mixin z-index-8 {
+  z-index: 800;
+}
+@mixin z-index-9 {
+  z-index: 900;
+}
+
+// row styles
+@mixin vertical-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}
+@mixin space-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+@mixin space-around {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+@mixin justify-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin justify-end {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+@mixin vertical-center-mobile {
+  display: block;
+}
+
+@mixin vertical-center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin top-align-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}

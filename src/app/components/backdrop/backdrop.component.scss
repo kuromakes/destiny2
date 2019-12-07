@@ -1,0 +1,77 @@
+@import '../../assets/scss/includes';
+
+.asc-backdrop {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    width: 100vw;
+}
+
+.asc-backdrop-background {
+    background-color: rgba($dark, 0.9);
+    height: 100%;
+    left: 0;
+    padding-top: 60px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 100%;
+}
+
+.asc-backdrop-close {
+    margin-right: $spacing-normal;
+    margin-top: $spacing-small;
+    @media #{$mobile} {
+        margin-top: 0;
+    }
+}
+
+.asc-backdrop-card {
+    bottom: 0;
+    height: calc(100% - 60px - 4.263rem);
+    left: 50%;
+    max-width: 100%;
+    padding: 0 $spacing-normal;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 960px;
+    @include z-index-8;
+    @media #{$mobile} {
+        height: calc(100% - 60px - 2.618rem);
+    }
+}
+
+.asc-backdrop-content {
+    animation: slideIn 300ms ease-in;
+    border-radius: .375rem .375rem 0 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+:host {
+    display: none;
+    &.is-open {
+        display: block;
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 900;
+    }
+}
