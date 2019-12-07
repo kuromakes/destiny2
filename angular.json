@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "d2-clans": {
+    "kuroi-destiny2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/d2-clans",
+            "outputPath": "dist/kuroi-destiny2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "d2-clans:build"
+            "browserTarget": "kuroi-destiny2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "d2-clans:build:production"
+              "browserTarget": "kuroi-destiny2:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "d2-clans:build"
+            "browserTarget": "kuroi-destiny2:build"
           }
         },
         "test": {
@@ -110,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "d2-clans:serve"
+            "devServerTarget": "kuroi-destiny2:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "d2-clans:serve:production"
+              "devServerTarget": "kuroi-destiny2:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "d2-clans"
+  "defaultProject": "kuroi-destiny2"
 }
