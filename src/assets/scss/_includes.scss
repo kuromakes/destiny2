@@ -7,27 +7,29 @@ $desktop:       "screen and (min-width: 1281px) and (max-width: 1919px)";
 $desktop-xl:    "screen and (min-width: 1920px)";
 
 // colors
-$light: #f9f9f9;
-$dark: #212121;
-$success: #69F0AE;
+$dark: #151515;
+$light: #eee;
+$primary: #e3db71;
+$accent: #ac65c2;
+$warn: #d94a6b;
+$success: #57d49b;
 
 // spacing
-$spacing-smallest:      0.618rem;
-$spacing-small:         1rem;
-$spacing-normal:        1.618rem;
-$spacing-large:         2.618rem;
-$spacing-larger:        4.283rem;
-$spacing-largest:       6.854rem;
+$ku-spacing-xs: 0.25rem;
+$ku-spacing-sm: 0.5rem;
+$ku-spacing-md: 1rem;
+$ku-spacing-lg: 2rem;
+$ku-spacing-xl: 3rem;
+$ku-spacing-xxl: 5rem;
 
 // Type scale
-$type-smaller:    0.618rem;
-$type-small:      0.875rem;
-$type-base:       1rem;
-$type-big:        1.25rem;
-$type-large:      1.618rem;
-$type-larger:     2.618rem;
-$type-largest:    4.263rem;
-$type-jumbo:      6.854rem;
+$ku-type-xs: 0.25rem;
+$ku-type-sm: 0.5rem;
+$ku-type-base: (2/3) * 1rem;
+$ku-type-md: 0.75rem;
+$ku-type-lg: 1rem;
+$ku-type-xl: 2rem;
+$ku-type-xxl: 3rem;
 
 // transitions
 $transition-ease:          cubic-bezier(0.32, 0.57, 0.25, 1);
