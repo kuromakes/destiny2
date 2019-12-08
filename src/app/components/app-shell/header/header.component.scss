@@ -1,0 +1,36 @@
+@import 'includes';
+.nav {
+  align-items: center;
+  display: flex;
+  left: 0;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-logo {
+  flex: 0;
+  app-logo {
+    align-items: center;
+    display: flex;
+    height: 2.5rem;
+    justify-content: center;
+    width: 2.5rem;
+  }
+  .nav-logo-text {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: $ku-spacing-md;
+    text-align: center;
+    text-orientation: upright;
+    width: 100%;
+    writing-mode: vertical-rl;
+  }
+}
+
+h1 {
+  display: inline-block;
+  margin: 0;
+}

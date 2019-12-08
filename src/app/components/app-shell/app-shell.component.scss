@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+app-header {
+  flex: 0;
+}
+
+section#app-body {
+  flex: 1;
+}
+
+app-footer {
+  flex: 0;
+}
