@@ -1,0 +1,16 @@
+@import '../includes';
+
+$themes: (
+  light: (
+    primary: $primary,
+    accent: $accent,
+    background: $light,
+    foreground: $dark
+  ),
+  dark: (
+    primary: $primary,
+    accent: $accent,
+    background: $dark,
+    foreground: $light
+  )
+);
