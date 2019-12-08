@@ -1,10 +1,13 @@
-@import './assets/scss/themes/theming';
+// @import './assets/scss/themes/theming';
 @import './assets/scss/overrides/styles.override';
 html,
 body {
+  font-size: 24px;
+  height: 100%;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   padding: 0;
+  width: 100%;
 }
 
 body {
@@ -15,3 +18,11 @@ body {
   box-sizing: border-box;
   font-family: 'Poppins', Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
+
+.app-content {
+  margin: auto;
+  max-width: calc(100% - 10rem);
+  width: 100%;
+}
+
+@import './assets/scss/themes/theme-utils.scss';
