@@ -17,7 +17,27 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@components": [
+        "src/app/components/public-api.ts"
+      ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@models": [
+        "src/app/models/public-api.ts"
+      ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
+      "@service": [
+        "src/app/service/public-api.ts"
+      ],
+      "@service/*": [
+        "src/app/service/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
