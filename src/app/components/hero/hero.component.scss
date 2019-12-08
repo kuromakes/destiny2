@@ -1,0 +1,77 @@
+@import '../../../../../src/assets/scss/includes';
+
+.hero {
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 33%;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden;
+    position: relative;
+    @include vertical-center;
+    @include justify-center;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.65);
+        @include z-index-1;
+    }
+    &.hero-small {
+        height: 25%;
+        max-height: 240px;
+        min-height: 120px;
+    }
+    &.hero-large {
+        height: 40%;
+        max-height: 500px;
+        min-height: 360px;
+    }
+    &.hero-full-screen {
+        flex: 1 1 auto;
+        max-height: none;
+    }
+    @media #{$mobile} {
+        height: auto;
+        max-height: none;
+        &.hero-small,
+        &.hero-large {
+            height: auto;
+            max-height: none;
+        }
+    }
+}
+
+.hero-content {
+    padding: $ku-spacing-sm $ku-spacing-lg;
+    width: 100%;
+    @include z-index-1;
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-weight: 700;
+        margin-top: 0;
+    }
+}
+
+.hero-subtitle {
+    color: #fff;
+    display: inline-block;
+    margin-top: $ku-spacing-sm;
+}
+
+:host {
+    display: block;
+    &.full-screen {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+}
