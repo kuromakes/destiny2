@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { AppHeaderComponent } from './header/header.component';
 import { AppFooterComponent } from './footer/footer.component';
 import { AppShellComponent } from './app-shell.component';
+import { AppLogoModule } from '../logo/logo.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    AppLogoModule
   ],
   declarations: [
     AppHeaderComponent,
