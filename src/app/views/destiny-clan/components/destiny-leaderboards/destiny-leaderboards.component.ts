@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { take } from 'rxjs/operators';
-import { BackdropComponent } from '../../../../components/backdrop/backdrop.component';
-import { RosterItem, LeaderboardItem } from '../../../../models/destiny';
-import { BungieService } from '../../../../service/bungie.service';
+import { BackdropComponent } from '@components/backdrop/backdrop.component';
+import { RosterItem, LeaderboardItem } from '@models/destiny';
+import { BungieService } from '@service/bungie.service';
 
 @Component({
-  selector: 'asc-destiny-leaderboards',
+  selector: 'app-destiny-leaderboards',
   templateUrl: './destiny-leaderboards.component.html',
   styleUrls: ['./destiny-leaderboards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

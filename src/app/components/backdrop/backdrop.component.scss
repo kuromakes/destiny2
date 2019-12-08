@@ -22,8 +22,8 @@
 }
 
 .asc-backdrop-close {
-    margin-right: $spacing-normal;
-    margin-top: $spacing-small;
+    margin-right: $ku-spacing-md;
+    margin-top: $ku-spacing-sm;
     @media #{$mobile} {
         margin-top: 0;
     }
@@ -34,7 +34,7 @@
     height: calc(100% - 60px - 4.263rem);
     left: 50%;
     max-width: 100%;
-    padding: 0 $spacing-normal;
+    padding: 0 $ku-spacing-md;
     position: absolute;
     transform: translateX(-50%);
     width: 960px;

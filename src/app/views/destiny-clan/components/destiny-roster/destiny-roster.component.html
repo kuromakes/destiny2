@@ -115,6 +115,6 @@
     <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
 </mat-card>
 
-<asc-backdrop (isOpenChange)="updateRoute($event)">
-    <asc-destiny-profile [player]="selectedPlayer"></asc-destiny-profile>
-</asc-backdrop>
+<app-backdrop (isOpenChange)="updateRoute($event)">
+    <app-destiny-profile [player]="selectedPlayer"></app-destiny-profile>
+</app-backdrop>

@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Destroyer } from '../../models/destroyer';
 
 @Component({
-  selector: 'asc-backdrop',
+  selector: 'app-backdrop',
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

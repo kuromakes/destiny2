@@ -2,7 +2,7 @@
 
 .asc-d2-leaderboard-loading {
     display: flex;
-    padding: $spacing-largest;
+    padding: $ku-spacing-xxl;
     @include vertical-center;
     @include justify-center;
 }
@@ -12,7 +12,7 @@ mat-form-field {
 }
 
 .asc-d2-leaderboard-loading {
-    padding: $spacing-largest 0;
+    padding: $ku-spacing-xxl 0;
     text-align: center;
 }
 

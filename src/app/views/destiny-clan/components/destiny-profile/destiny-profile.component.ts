@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { DestinyStatsComponent } from '../destiny-stats/destiny-stats.component';
-import { RosterItem, DestinyProfile, DestinyPvPStats, DestinyPvEStats, DestinyCharacter } from '../../../../models/destiny';
-import { BungieService } from '../../../../service/bungie.service';
+import { RosterItem, DestinyProfile, DestinyPvPStats, DestinyPvEStats, DestinyCharacter } from '@models/destiny';
+import { BungieService } from '@service/bungie.service';
 
 @Component({
-  selector: 'asc-destiny-profile',
+  selector: 'app-destiny-profile',
   templateUrl: './destiny-profile.component.html',
   styleUrls: ['./destiny-profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

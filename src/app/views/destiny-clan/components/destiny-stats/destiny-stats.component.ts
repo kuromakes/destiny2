@@ -1,8 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { DestinyPvPStats, DestinyPvEStats } from '../../../../models/destiny';
+import { DestinyPvPStats, DestinyPvEStats } from '@models/destiny';
 
 @Component({
-  selector: 'asc-destiny-stats',
+  selector: 'app-destiny-stats',
   templateUrl: './destiny-stats.component.html',
   styleUrls: ['./destiny-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

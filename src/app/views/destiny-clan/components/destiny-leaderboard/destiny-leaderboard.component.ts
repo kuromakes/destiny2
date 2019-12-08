@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
-import { Destroyer } from '../../../../models/destroyer';
-import { LeaderboardItem, RosterItem } from '../../../../models/destiny';
+import { Destroyer, LeaderboardItem, RosterItem } from '@models';
 import { BehaviorSubject } from 'rxjs';
-import { BackdropComponent } from '../../../../components/backdrop/backdrop.component';
+import { BackdropComponent } from '@components/backdrop/backdrop.component';
 
 @Component({
-    selector: 'asc-destiny-leaderboard',
+    selector: 'app-destiny-leaderboard',
     templateUrl: './destiny-leaderboard.component.html',
     styleUrls: ['./destiny-leaderboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

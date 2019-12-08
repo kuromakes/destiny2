@@ -2,7 +2,7 @@
 
 .asc-d2-roster-loading {
     display: flex;
-    padding: $spacing-largest;
+    padding: $ku-spacing-xxl;
     @include vertical-center;
     @include justify-center;
 }
@@ -19,11 +19,11 @@ mat-header-row {
 
 mat-row {
     cursor: pointer;
-    padding: $spacing-smallest 0;
+    padding: $ku-spacing-xs 0;
     @media #{$mobile} {
         display: flex;
         flex-direction: column;
-        padding: $spacing-small;
+        padding: $ku-spacing-sm;
         mat-cell {
             padding-left: 0;
             padding-right: 0;
@@ -43,7 +43,7 @@ mat-form-field {
 }
 
 .asc-d2-roster-icon {
-    flex: 0 0 $spacing-largest;
+    flex: 0 0 $ku-spacing-xxl;
 }
 
 .asc-d2-roster-profile {
@@ -63,9 +63,9 @@ mat-form-field {
 .asc-d2-roster-icon-wrap {
     border-radius: 50%;
     display: block;
-    height: $spacing-large;
+    height: $ku-spacing-lg;
     overflow: hidden;
-    width: $spacing-large;
+    width: $ku-spacing-lg;
     img {
         display: block;
         width: 100%;

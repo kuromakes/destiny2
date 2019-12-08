@@ -3,16 +3,13 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { map, take, takeUntil } from 'rxjs/operators';
-import { BackdropComponent } from '../../../../components/backdrop/backdrop.component';
+import { BackdropComponent } from '@components/backdrop/backdrop.component';
 import { DestinyProfileComponent } from '../destiny-profile/destiny-profile.component';
-import { RosterItem } from '../../../../models/destiny';
-import { Destroyer } from '../../../../models/destroyer';
-import { BungieService } from '../../../../service/bungie.service';
-import { RoutingService } from '../../../../service/routing.service';
-import { SEOService } from '../../../../service/seo.service';
+import { Destroyer, RosterItem } from '@models';
+import { BungieService, RoutingService, SEOService } from '@service';
 
 @Component({
-  selector: 'asc-destiny-roster',
+  selector: 'app-destiny-roster',
   templateUrl: './destiny-roster.component.html',
   styleUrls: ['./destiny-roster.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

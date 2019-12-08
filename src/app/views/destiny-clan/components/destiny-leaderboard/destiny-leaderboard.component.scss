@@ -6,7 +6,7 @@ table {
 
 mat-row {
     cursor: pointer;
-    padding: $spacing-smallest 0;
+    padding: $ku-spacing-xs 0;
 }
 
 mat-form-field {
@@ -14,11 +14,11 @@ mat-form-field {
 }
 
 .asc-d2-leaderboard-icon {
-    flex: 0 0 $spacing-largest;
+    flex: 0 0 $ku-spacing-xxl;
 }
 
 .asc-d2-leaderboard-rank {
-    flex: 0 0 $spacing-larger;
+    flex: 0 0 $ku-spacing-xl;
 }
 
 .asc-d2-leaderboard-name span {
@@ -37,9 +37,9 @@ mat-form-field {
 .asc-d2-leaderboard-icon-wrap {
     border-radius: 50%;
     display: block;
-    height: $spacing-large;
+    height: $ku-spacing-lg;
     overflow: hidden;
-    width: $spacing-large;
+    width: $ku-spacing-lg;
     img {
         display: block;
         width: 100%;
@@ -47,7 +47,7 @@ mat-form-field {
 }
 
 button.asc-view-full-leaderboard {
-    margin-top: $spacing-normal;
+    margin-top: $ku-spacing-md;
     width: 100%;
 }
 
