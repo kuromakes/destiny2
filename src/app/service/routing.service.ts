@@ -1,7 +1,7 @@
-import { Injectable, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Destroyer } from '../models/destroyer';
 
