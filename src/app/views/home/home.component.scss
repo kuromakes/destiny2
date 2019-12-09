@@ -1,0 +1,24 @@
+@import 'includes';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.title-block {
+  margin-top: -$ku-spacing-xl;
+  padding: $ku-spacing-lg;
+  position: relative;
+  @include z-index-1;
+  h1 {
+    font-size: $ku-type-xxl;
+    margin: 0;
+    max-width: 360px;
+  }
+}
+
+.clan-search {
+  padding-left: $ku-spacing-md;
+  padding-top: $ku-spacing-lg;
+}
