@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomePageComponent } from './views/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./views/home/home.module').then(m => m.HomePageModule)
+    component: HomePageComponent
   },
   {
-    path: 'clan/:id',
+    path: 'clan',
     loadChildren: () => import('./views/destiny-clan/destiny-clan.module').then(m => m.DestinyClanModule)
-  }
+  }   
 ]
 
 @NgModule({
