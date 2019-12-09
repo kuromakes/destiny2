@@ -1,27 +1,43 @@
 @import 'includes';
 
-table {
+table,
+table.destiny-leaderboard-table {
+    background: transparent;
     width: 100%;
 }
 
 mat-row {
     cursor: pointer;
-    padding: $ku-spacing-xs 0;
+    padding: $ku-spacing-sm 0;
+    @media #{$mobile} {
+        display: flex;
+        flex-direction: column;
+        padding: $ku-spacing-md;
+        mat-cell {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+mat-row,
+mat-header-row {
+    border-color: rgba(black, 0.1);
 }
 
 mat-form-field {
     width: 100%;
 }
 
-.asc-d2-leaderboard-icon {
+.d2-leaderboard-icon {
     flex: 0 0 $ku-spacing-xxl;
 }
 
-.asc-d2-leaderboard-rank {
+.d2-leaderboard-rank {
     flex: 0 0 $ku-spacing-xl;
 }
 
-.asc-d2-leaderboard-name span {
+.d2-leaderboard-name span {
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -29,12 +45,12 @@ mat-form-field {
     width: 100%;
 }
 
-.asc-d2-leaderboard-status {
+.d2-leaderboard-status {
     justify-content: flex-end;
     text-align: right;
 }
 
-.asc-d2-leaderboard-icon-wrap {
+.d2-leaderboard-icon-wrap {
     border-radius: 50%;
     display: block;
     height: $ku-spacing-lg;
@@ -46,24 +62,24 @@ mat-form-field {
     }
 }
 
-button.asc-view-full-leaderboard {
+button.view-full-leaderboard {
     margin-top: $ku-spacing-md;
     width: 100%;
 }
 
-asc-backdrop {
-    asc-destiny-profile {
+app-backdrop {
+    destiny-profile {
         display: flex;
         flex-direction: column;
         height: 100%;
     }    
 }
 
-.asc-full-leaderboard-wrap {
+.full-leaderboard-wrap {
     height: 100%;
     overflow-y: auto;
     @media #{$mobile} {
-        .asc-d2-leaderboard-icon {
+        .d2-leaderboard-icon {
             display: none;
         }
     }

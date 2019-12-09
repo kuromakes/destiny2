@@ -40,15 +40,15 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
   }
 
   ngOnInit() {
-    this.bungie.getRoster().pipe(takeUntil(this.destroy$)).subscribe((data: RosterItem[]) => {
-      this.roster.next(data);
-      this.dataSource = new MatTableDataSource(this.roster.value);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      if (this.activeRoute.snapshot.params) {
+    this.bungie.roster.pipe(takeUntil(this.destroy$)).subscribe(
+      roster => {
+        this.roster.next(roster);
+        this.dataSource = new MatTableDataSource(this.roster.value);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.loadPlayerByUrl();
       }
-    });
+    )
   }
 
   public searchRoster(filter: string): void {
@@ -61,7 +61,12 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
   public viewPlayer(player: RosterItem): void {
     this.selectedPlayer = player;
     this.backdrop.open();
-    this.routing.location.replaceState('/destiny/roster/' + player.destinyId + '/' + player.bungieId);
+    // this.routing.location.replaceState('player/' + player.destinyId + '/' + player.bungieId);
+    this.routing.router.navigate(['player', player.destinyId, player.bungieId], {
+      relativeTo: this.activeRoute,
+      replaceUrl: true
+    });
+    this.routing
     this.seo.updateTitle(`${player.name} on Destiny 2`);
     this.seo.updateDescription(`Player stats for ${player.name} on Destiny 2`);
     this.cd.markForCheck();
@@ -69,7 +74,11 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
 
   public updateRoute(event: boolean): void {
     if (!event) {
-      this.routing.setLocationState('/destiny');
+      // this.routing.setLocationState('/clan' + (this.bungie.clanId ? '/' + this.bungie.clanId : ''));
+      this.routing.router.navigate(['clan', this.bungie.clanId || ''], {
+        relativeTo: this.activeRoute.root,
+        replaceUrl: true
+      });
     }
   }
 

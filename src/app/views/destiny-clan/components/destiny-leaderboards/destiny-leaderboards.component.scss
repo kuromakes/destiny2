@@ -1,19 +1,19 @@
 @import 'includes';
 
-.asc-d2-leaderboard-loading {
+.d2-leaderboard-loading {
     display: flex;
-    padding: $ku-spacing-xxl;
+    padding: $ku-spacing-xxl 0;
+    text-align: center;
     @include vertical-center;
     @include justify-center;
 }
 
-mat-form-field {
-    width: 100%;
+.destiny-leaderboard {
+    margin-bottom: $ku-spacing-lg;
 }
 
-.asc-d2-leaderboard-loading {
-    padding: $ku-spacing-xxl 0;
-    text-align: center;
+mat-form-field {
+    width: 100%;
 }
 
 :host {

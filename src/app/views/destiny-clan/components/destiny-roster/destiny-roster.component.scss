@@ -1,14 +1,20 @@
 @import 'includes';
+@import 'themes/themify';
 
-.asc-d2-roster-loading {
+.d2-roster-loading {
     display: flex;
     padding: $ku-spacing-xxl;
     @include vertical-center;
     @include justify-center;
 }
 
-mat-table {
+mat-table#clanRoster {
+    background: transparent;
     width: 100%;
+}
+
+mat-paginator#clanRosterPaginator {
+    background: transparent;
 }
 
 mat-header-row {
@@ -19,16 +25,21 @@ mat-header-row {
 
 mat-row {
     cursor: pointer;
-    padding: $ku-spacing-xs 0;
+    padding: $ku-spacing-sm 0;
     @media #{$mobile} {
         display: flex;
         flex-direction: column;
-        padding: $ku-spacing-sm;
+        padding: $ku-spacing-md;
         mat-cell {
             padding-left: 0;
             padding-right: 0;
         }
     }
+}
+
+mat-row,
+mat-header-row {
+    border-color: rgba(black, 0.1);
 }
 
 mat-cell {
@@ -42,25 +53,25 @@ mat-form-field {
     width: 100%;
 }
 
-.asc-d2-roster-icon {
+.d2-roster-icon {
     flex: 0 0 $ku-spacing-xxl;
 }
 
-.asc-d2-roster-profile {
+.d2-roster-profile {
     flex: 0 0 10rem;
     button {
         width: 100%;
     }
 }
 
-.asc-d2-roster-icon,
-.asc-d2-roster-profile {
+.d2-roster-icon,
+.d2-roster-profile {
     @media #{$mobile} {
         flex: 0;
     }
 }
 
-.asc-d2-roster-icon-wrap {
+.d2-roster-icon-wrap {
     border-radius: 50%;
     display: block;
     height: $ku-spacing-lg;
@@ -72,7 +83,7 @@ mat-form-field {
     }
 }
 
-asc-destiny-profile {
+destiny-profile {
     display: flex;
     flex-direction: column;
     height: 100%;

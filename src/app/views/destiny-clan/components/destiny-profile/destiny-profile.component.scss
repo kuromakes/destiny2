@@ -1,12 +1,12 @@
 @import 'includes';
 
-.asc-destiny-profile-loading {
+.destiny-profile-loading {
     height: 100%;
     @include vertical-center;
     @include justify-center;
 }
 
-.asc-destiny-profile-header {
+.destiny-profile-header {
     display: flex;
     width: 100%;
     @include space-between;
@@ -18,13 +18,19 @@
     }
 }
 
-.asc-destiny-profile-header-characters {
+.destiny-profile-header-characters {
     padding-top: .83rem;
 }
 
-.asc-destiny-profile-wrap,
-asc-destiny-stats {
+.destiny-profile-wrap,
+app-destiny-stats {
     display: flex;
     flex-direction: column;
     flex: 1;
+}
+
+:host {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }

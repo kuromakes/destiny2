@@ -1,10 +1,10 @@
 <ng-container *ngIf="destinyProfile else loading">
-    <div class="asc-destiny-profile-wrap">
+    <div class="destiny-profile-wrap">
         <ng-container *ngIf="showBanner">
             <app-hero [bannerUrl]="profileTheme">
-                <div class="asc-destiny-profile-header">
-                    <div class="asc-destiny-profile-header-info">
-                        <h2 asc-color="light">
+                <div class="destiny-profile-header">
+                    <div class="destiny-profile-header-info">
+                        <h2 ku-color="light">
                             <span
                                 [matTooltip]="destinyProfile.bungieProfile.bio ? destinyProfile.bungieProfile.bio : ''"
                                 matTooltipPosition="after"
@@ -13,19 +13,19 @@
                             </span>
                         </h2>
                         <div>
-                            <span asc-color="primary">
-                                <span asc-color="light">Total Hours</span>
+                            <span ku-color="primary">
+                                <span ku-color="light">Total Hours</span>
                                 {{destinyProfile.hoursPlayed}}
                             </span>
                         </div>
                         <div>
-                            <span asc-color="primary">
-                                <span asc-color="light">Last Played</span>
+                            <span ku-color="primary">
+                                <span ku-color="light">Last Played</span>
                                 {{destinyProfile.lastPlayed | date}}
                             </span>
                         </div>
                     </div>
-                    <div class="asc-destiny-profile-header-characters">
+                    <div class="destiny-profile-header-characters">
                         <button
                             mat-flat-button
                             color="primary"
@@ -38,7 +38,6 @@
                         <mat-menu
                             #characterSelection="matMenu"
                             [hasBackdrop]="true"
-                            [backdropClass]="'asc-destiny-character-select-backdrop'"
                         >
                             <button
                                 mat-menu-item
@@ -67,7 +66,7 @@
     </div>
 </ng-container>
 <ng-template #loading>
-    <div class="asc-destiny-profile-loading">
+    <div class="destiny-profile-loading">
         <mat-spinner
             size="48"
             color="primary"

@@ -2,7 +2,7 @@
         <div style="margin-bottom: 1rem;">
                 <mat-form-field style="width: 200px;">
                     <h4
-                        asc-color="primary"
+                        ku-color="primary"
                         style="margin-top: 0;"
                     >
                         Select Activity
@@ -18,7 +18,7 @@
                 <ng-container *ngIf="activity === 'pve' else PvPLeaderboards">
                     <!-- RAID CLEARS LEADERBOARD -->
                     <ng-container *ngIf="!raidClearsLeaderboard else Top5RaidClears">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -26,7 +26,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5RaidClears>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Raid Clears"
                                 [leaderboard]="raidClearsLeaderboard"
@@ -35,7 +35,7 @@
                     </ng-template>
                     <!-- RAID TIME PER CLEAR LEADERBOARD -->
                     <ng-container *ngIf="!raidTimePerClearLeaderboard else Top5RaidTimePerClear">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -43,7 +43,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5RaidTimePerClear>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Raid Time Per Clear"
                                 [leaderboard]="raidTimePerClearLeaderboard"
@@ -52,7 +52,7 @@
                     </ng-template>
                     <!-- RAID KILLS LEADERBOARD -->
                     <ng-container *ngIf="!raidKillsLeaderboard else Top5RaidKills">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -60,7 +60,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5RaidKills>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Raid Kills"
                                 [leaderboard]="raidKillsLeaderboard"
@@ -69,7 +69,7 @@
                     </ng-template>
                     <!-- DEATHS PER RAID LEADERBOARD -->
                     <ng-container *ngIf="!deathsPerRaidLeaderboard else Top5DeathsPerRaid">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -77,7 +77,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5DeathsPerRaid>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Deaths Per Raid"
                                 [leaderboard]="deathsPerRaidLeaderboard"
@@ -86,7 +86,7 @@
                     </ng-template>
                     <!-- STRIKE CLEARS LEADERBOARD -->
                     <ng-container *ngIf="!strikeClearsLeaderboard else Top5StrikeClears">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -94,7 +94,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5StrikeClears>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Strike Clears"
                                 [leaderboard]="strikeClearsLeaderboard"
@@ -103,7 +103,7 @@
                     </ng-template>
                     <!-- STRIKE KILLS LEADERBOARD -->
                     <ng-container *ngIf="!strikeKillsLeaderboard else Top5StrikeKills">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -111,7 +111,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5StrikeKills>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Strike Kills"
                                 [leaderboard]="strikeKillsLeaderboard"
@@ -123,7 +123,7 @@
                 <ng-template #PvPLeaderboards>
                     <!-- KD LEADERBOARD -->
                     <ng-container *ngIf="!kdLeaderboard else Top5Kd">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -131,7 +131,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Kd>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="KD"
                                 [leaderboard]="kdLeaderboard"
@@ -142,7 +142,7 @@
                     <!-- KDA LEADERBOARD -->
             
                     <ng-container *ngIf="!kdaLeaderboard else Top5Kda">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -150,7 +150,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Kda>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="KDA"
                                 [leaderboard]="kdaLeaderboard"
@@ -162,7 +162,7 @@
                     <!-- EFFICIENCY LEADERBOARD -->
             
                     <ng-container *ngIf="!efficiencyLeaderboard else Top5Efficiency">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -170,7 +170,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Efficiency>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Efficiency"
                                 [leaderboard]="efficiencyLeaderboard"
@@ -182,7 +182,7 @@
                     <!-- KILLS LEADERBOARD -->
             
                     <ng-container *ngIf="!killsLeaderboard else Top5Kills">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -190,7 +190,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Kills>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Kills"
                                 [leaderboard]="killsLeaderboard"
@@ -202,7 +202,7 @@
                     <!-- ASSISTS LEADERBOARD -->
             
                     <ng-container *ngIf="!assistsLeaderboard else Top5Assists">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -210,7 +210,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Assists>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Assists"
                                 [leaderboard]="assistsLeaderboard"
@@ -222,7 +222,7 @@
                     <!-- DEFEATS LEADERBOARD -->
             
                     <ng-container *ngIf="!defeatsLeaderboard else Top5Defeats">
-                        <div class="col-xs-12 col-sm-6 asc-d2-leaderboard-loading">
+                        <div class="col-xs-12 col-sm-6 d2-leaderboard-loading">
                             <mat-spinner
                                 size="36"
                                 color="primary"
@@ -230,7 +230,7 @@
                         </div>
                     </ng-container>
                     <ng-template #Top5Defeats>
-                        <div class="col-xs-12 col-sm-6 asc-destiny-leaderboard">
+                        <div class="col-xs-12 col-sm-6 destiny-leaderboard">
                             <app-destiny-leaderboard
                                 leaderboardTitle="Defeats"
                                 [leaderboard]="defeatsLeaderboard"
@@ -246,6 +246,6 @@
 </ng-container>
 <ng-template #failed>
     <div style="padding: 4.263rem 1.618rem; text-align: center;">
-        <h1 asc-color="warn">Failed to load leaderboards</h1>
+        <h1 ku-color="warn">Failed to load leaderboards</h1>
     </div>
 </ng-template>
