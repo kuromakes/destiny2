@@ -1,5 +1,5 @@
 @import 'includes';
-$light-theme-primary: mat-palette($mat-yellow, 500);
-$light-theme-accent: mat-palette($mat-deep-purple, 400);
+$light-theme-primary: mat-palette($mat-deep-purple, 400);
+$light-theme-accent: mat-palette($mat-yellow, 500);
 $light-theme-warn: mat-palette($mat-red, 400);
 $light-theme: mat-light-theme($light-theme-primary, $light-theme-accent, $light-theme-warn);

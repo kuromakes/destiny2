@@ -1,3 +1,4 @@
+@import './themify';
 @import '~@angular/material/theming';
 @include mat-core();
 @import './light-theme';
@@ -24,4 +25,14 @@
 .dark-theme {
     @include angular-material-theme($dark-theme);
     // @include custom-components-theme($dark-theme);
+}
+
+app-destiny-clan {
+    .is-active {
+        &::after {
+            @include themify($themes) {
+                background-color: themed('primary');
+            }
+        }
+    }
 }

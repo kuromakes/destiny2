@@ -17,7 +17,7 @@ export class ThemeService {
 
   constructor(private _rendererFactory: RendererFactory2) {
     this.renderer = _rendererFactory.createRenderer(null, null);
-    this._theme = this.getLocalTheme();
+    this.theme = this.getLocalTheme();
   }
 
   get theme(): Theme {

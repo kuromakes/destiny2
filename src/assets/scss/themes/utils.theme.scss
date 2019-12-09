@@ -36,7 +36,7 @@ em {
         font-size: $ku-type-lg;
         line-height: $ku-type-xl;
     }
-    @media #{$tablet}, #{$desktop} {
+    @media #{$tablet}, #{$desktop-sm}, #{$desktop} {
         font-size: $ku-type-md;
         line-height: 1.5 * $ku-type-lg;
     }
@@ -155,11 +155,15 @@ pre code {
 }
 .ku-color-primary,
 [ku-color="primary"] {
-    color: $primary;
+    @include themify($themes) {
+        color: themed('primary');
+    }
 }
 .ku-color-accent,
 [ku-color="accent"] {
-    color: $accent;
+    @include themify($themes) {
+        color: themed('accent');
+    }
 }
 .ku-color-warn,
 [ku-color="warn"] {
@@ -246,11 +250,15 @@ pre code {
 }
 .ku-background-color-primary,
 [ku-background-color="primary"] {
-    background-color: $primary;
+    @include themify($themes) {
+        background-color: themed('primary');
+    }
 }
 .ku-background-color-accent,
 [ku-background-color="accent"] {
-    background-color: $accent;
+    @include themify($themes) {
+        background-color: themed('accent');
+    }
 }
 .ku-background-color-warn,
 [ku-background-color="warn"] {
@@ -284,11 +292,15 @@ pre code {
 }
 .ku-border-color-primary,
 [ku-border-color="primary"] {
-    border-color: $primary;
+    @include themify($themes) {
+        border-color: themed('primary');
+    }
 }
 .ku-border-color-accent,
 [ku-border-color="accent"] {
-    border-color: $accent;
+    @include themify($themes) {
+        border-color: themed('accent');
+    }
 }
 .ku-border-color-warn,
 [ku-border-color="warn"] {
