@@ -15,6 +15,9 @@ export class InputComponent extends Destroyer implements OnInit {
   guid: string;
 
   @Input()
+  placeholder: string;
+
+  @Input()
   type = 'text';
 
   @Input()
