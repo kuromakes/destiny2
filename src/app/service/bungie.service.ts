@@ -1,29 +1,34 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable, zip, of } from 'rxjs';
-import { map, switchMap, shareReplay } from 'rxjs/operators';
+import { forkJoin, Observable, zip, of, BehaviorSubject, Subscription } from 'rxjs';
+import { map, switchMap, shareReplay, takeUntil } from 'rxjs/operators';
 import { BungieProfile, DestinyCharacter, DestinyPlayerLookup, DestinyProfile, DestinyPvEStats, DestinyPvPStats, RosterItem } from '../models/destiny';
 import { environment } from '../../environments/environment';
+import { Destroyer } from '@models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BungieService {
+export class BungieService extends Destroyer {
 
-  private rootUrl = 'https://www.bungie.net/platform';
-
-  private _roster: Observable<RosterItem[]>;
-
-  private _leaderboards: Observable<{}>;
+  private readonly rootUrl = 'https://www.bungie.net/platform';
 
   private httpOptions = {
     headers: new HttpHeaders().set('X-API-KEY', environment.bungieKey)
   };
 
+  private _roster: Observable<RosterItem[]>;
+
+  private _leaderboards: Observable<{}>;
+
   private _clanId: number;
 
+  private _rosterSubscription: Subscription;
+
+  public roster = new BehaviorSubject<RosterItem[]>([]);
+
   constructor(private http: HttpClient) {
-    
+    super();
   }
 
   get clanId(): number {
@@ -31,11 +36,39 @@ export class BungieService {
   }
 
   set clanId(id: number) {
+    console.log('NEW CLAN ID:::', id);
     this._clanId = id;
+    if (this._rosterSubscription) {
+      this._rosterSubscription.unsubscribe();
+    }
+    this._rosterSubscription = this.getRoster(id).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(
+      roster => {
+        console.log('UPDATED ROSTER:::', roster)
+        this.roster.next(roster);
+      },
+      err => console.error('Bungie service failed to update roster subject', err)
+    );
   }
 
-  public getRoster(): Observable<RosterItem[]> {
-    const url = `${this.rootUrl}/groupv2/${this.clanId}/members/`;
+  public setClanId(id: number) {
+    this.clanId = id;
+  }
+
+  public getClan(id?: number): Observable<any> {
+    const url = `${this.rootUrl}/groupv2/${id || this.clanId}/`;
+    return this.http.get<any>(url, this.httpOptions).pipe(
+      map(response => {
+        if (response && response.Response) {
+          return response.Response;
+        }
+      })
+    );
+  }
+
+  public getRoster(id?: number): Observable<RosterItem[]> {
+    const url = `${this.rootUrl}/groupv2/${id || this.clanId}/members/`;
     if (!this._roster) {
       this._roster = this.http.get(url, this.httpOptions).pipe(
         map((response: any) => {
