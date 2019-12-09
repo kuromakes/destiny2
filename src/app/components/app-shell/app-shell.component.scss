@@ -4,9 +4,6 @@
   flex-direction: column;
   height: 100%;
   overflow-x: hidden;
-  @media #{$mobile} {
-    padding-top: 2.5rem;
-  }
 }
 
 app-header {

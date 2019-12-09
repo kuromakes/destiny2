@@ -20,6 +20,9 @@ body {
 
 body {
   -webkit-overflow-scrolling: touch;
+  @media #{$mobile} {
+    padding-top: 2.5rem;
+  }
 }
 
 .app-content {
