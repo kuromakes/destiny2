@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { BungieService } from '@service';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { Destroyer } from '@models';
+import { BungieService, SEOService } from '@service';
 import { BehaviorSubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-destiny-clan',
@@ -10,29 +11,30 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./destiny-clan.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DestinyClanComponent implements OnInit {
+export class DestinyClanComponent extends Destroyer implements OnInit {
 
   public clanData = new BehaviorSubject<any>(null);
 
   constructor(
     private bungie: BungieService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private seo: SEOService
   ) {
-
+    super();
   }
 
   ngOnInit() {
     const snapshot = this.activatedRoute.snapshot;
-    console.log(snapshot);
     if (snapshot && snapshot.params && snapshot.params.clanId) {
       const id = snapshot.params.clanId;
-      console.log(id);
       this.bungie.setClanId(snapshot.params.clanId);
-      this.bungie.getClan(id).pipe(take(1)).subscribe(
+      this.bungie.clan.pipe(
+        takeUntil(this.destroy$)
+      ).subscribe(
         clan => {
           if (clan) {
-            console.log('CLAN:::', clan);
-            this.clanData.next(clan)
+            this.clanData.next(clan);
+            this.seo.updateTitle(clan.name);
           }
         }
       )

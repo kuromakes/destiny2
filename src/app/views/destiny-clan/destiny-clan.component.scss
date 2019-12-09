@@ -1,8 +1,37 @@
 @import 'includes';
 .destiny-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   margin: $ku-spacing-lg 0;
+  width: 100%;
+  @media #{$mobile} {
+    flex-direction: column;
+    >div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      button {
+        width: 100%;
+        margin-bottom: $ku-spacing-sm;
+      }
+    }
+  }
 }
 
 h1 {
   margin: 0
+}
+
+.is-active {
+  position: relative;
+  &::after {
+    background: $primary;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
 }
