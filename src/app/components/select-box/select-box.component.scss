@@ -1,0 +1,17 @@
+.ku-select {
+  display: inline-block;
+  position: relative;
+  border-bottom-width: 2px;
+  border-left: 0;
+  border-right: 0;
+  border-style: solid;
+  border-top: 0;
+}
+
+select {
+  border: 0;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+}

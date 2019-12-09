@@ -1,0 +1,7 @@
+<div class="ku-select" ku-border-color="foreground">
+    <select [(ngModel)]="value">
+      <option *ngFor="let option of options" value="{{option.value}}">
+        {{option.display}}
+      </option>
+    </select>
+</div>
