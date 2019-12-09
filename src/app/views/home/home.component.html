@@ -25,6 +25,12 @@
           <button mat-flat-button color="primary" (click)="search()">
             <span ku-type="base">Search</span>
           </button>
+          <ng-container *ngIf="isLoading | async">
+            <div class="loading-spinner">
+              <mat-spinner size="24" color="primary"></mat-spinner>
+            </div>
+          </ng-container>
+          
           <ng-container *ngIf="searchResults | async">
             <a
               *ngFor="let result of searchResults | async"
