@@ -1,0 +1,30 @@
+@import 'includes';
+@import 'themes/themify';
+
+input,
+textarea {
+  background: transparent;
+  padding: $ku-spacing-xs;
+  transition: 300ms ease;
+  &.is-full-width {
+    display: block;
+    width: 100%;
+  }
+  &:focus {
+    outline: none;
+  }
+  @include themify($themes) {
+    border-color: themed('foreground');
+    &:focus {
+      border-color: themed('primary');
+    }
+  }
+}
+
+input {
+  border-bottom-width: 2px;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-style: solid;
+}

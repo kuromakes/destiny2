@@ -1,0 +1,26 @@
+<ng-container [ngSwitch]="type">
+
+  <ng-container *ngSwitchCase="'textarea'">
+    <textarea
+      name="{{guid}}"
+      id="{{guid}}"
+      ku-color="foreground"
+      [ngClass]="cssClasses"
+      [ngModel]="value"
+      (ngModelChange)="handleInput($event)"
+    ></textarea>
+  </ng-container>
+  
+  <ng-container *ngSwitchDefault>
+    <input
+      type="{{type}}"
+      id="{{guid}}"
+      name="{{guid}}"
+      ku-color="foreground"
+      [ngClass]="cssClasses"
+      [ngModel]="value"
+      (ngModelChange)="handleInput($event)"
+    >
+  </ng-container>
+  
+</ng-container>
