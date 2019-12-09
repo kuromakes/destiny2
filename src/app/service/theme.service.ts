@@ -33,7 +33,8 @@ export class ThemeService {
       this.activeTheme.next(newTheme);
       // update DOM
       const body = document.querySelector('body');
-      this.renderer.removeClass(body, previous);
+      this.renderer.removeClass(body, previous + '-theme');
+      this.renderer.addClass(body, newTheme + '-theme')
       // save locally
       this.cacheTheme();
     }

@@ -1,100 +1,299 @@
 @import '../includes';
+@import './themify';
 
-@mixin asc-utils-theme($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
-    [asc-color="primary"],
-    .asc-color-primary {
-        color: mat-color($primary);
+// type
+.ku-type-xs,
+[ku-type="xs"] {
+    font-size: $ku-type-xs;
+}
+.ju-type-sm,
+[ku-type="sm"] {
+    font-size: $ku-type-sm;
+}
+.ku-type-base,
+[ku-type="base"] {
+    font-size: $ku-type-base;
+}
+.ku-type-md,
+[ku-type="md"] {
+    font-size: $ku-type-md;
+}
+.ku-type-lg,
+[ku-type="lg"] {
+    font-size: $ku-type-lg;
+}
+.ku-type-xl,
+[ku-type="xl"] {
+    font-size: $ku-type-xl;
+}
+.ku-type-xxl,
+[ku-type="xxl"] {
+    font-size: $ku-type-xxl;
+}
+
+.ku-type-transform-lowercase,
+[ku-type-transform="lowercase"] {
+    text-transform: lowercase;
+}
+.ku-type-transform-uppercase,
+[ku-type-transform="uppercase"] {
+    text-transform: uppercase;
+}
+.ku-type-transform-capitalize,
+[ku-type-transform="capitalize"] {
+    text-transform: capitalize;
+}
+
+// type color
+.ku-color-foreground,
+[ku-color="foreground"] {
+  @include themify($themes) {
+    color: themed('foreground');
+  }
+}
+.ku-color-background,
+[ku-color="background"] {
+  @include themify($themes) {
+    color: themed('background');
+  }
+}
+.ku-color-light,
+[ku-color="light"] {
+    color: $light;
+}
+.ku-color-dark,
+[ku-color="dark"] {
+    color: $dark;
+}
+.ku-color-primary,
+[ku-color="primary"] {
+    color: $primary;
+}
+.ku-color-accent,
+[ku-color="accent"] {
+    color: $accent;
+}
+.ku-color-warn,
+[ku-color="warn"] {
+    color: $warn;
+}
+.ku-color-success,
+[ku-color="success"] {
+    color: $success;
+}
+
+// font weight
+.ku-type-weight-bold,
+[ku-type-weight="bold"] {
+    font-weight: 700;
+}
+.ku-type-weight-thicc,
+[ku-type-weight="thicc"] {
+    font-weight: 900;
+}
+
+// fade
+.ku-fade-10,
+[ku-fade="10"] {
+    opacity: 0.9;
+}
+.ku-fade-20,
+[ku-fade="20"] {
+    opacity: 0.8;
+}
+.ku-fade-30,
+[ku-fade="30"] {
+    opacity: 0.7;
+}
+.ku-fade-40,
+[ku-fade="40"] {
+    opacity: 0.6;
+}
+.ku-fade-50,
+[ku-fade="50"] {
+    opacity: 0.5;
+}
+.ku-fade-60,
+[ku-type-fade="60"] {
+    opacity: 0.4;
+}
+.ku-fade-70,
+[ku-fade="70"] {
+    opacity: 0.3;
+}
+.ku-fade-80,
+[ku-fade="80"] {
+    opacity: 0.2;
+}
+.ku-fade-90,
+[ku-fade="90"] {
+    opacity: 0.1;
+}
+.ku-fade-100,
+[ku-fade="100"] {
+    opacity: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: $ku-type-xl;
+}
+h2 {
+    font-size: $ku-type-lg;
+}
+h3 {
+    font-size: $ku-type-md;
+}
+h4 {
+    font-size: $ku-type-base;
+}
+
+p,
+a,
+li,
+div,
+span,
+strong,
+em {
+    @media #{$desktop-xl} {
+        font-size: $ku-type-lg;
+        line-height: $ku-type-xl;
     }
-    [asc-color="accent"],
-    .asc-color-accent {
-        color: mat-color($accent);
+    @media #{$tablet}, #{$desktop} {
+        font-size: $ku-type-md;
+        line-height: 1.5 * $ku-type-lg;
     }
-    [asc-color="warn"],
-    .asc-color-warn {
-        color: mat-color($warn);
-    }
-    [asc-color="foreground"],
-    .asc-color-foreground {
-        color: mat-color($foreground);
-    }
-    [asc-color="background"],
-    .asc-color-background {
-        color: mat-color($background);
-    }
-    [asc-color="success"],
-    .asc-color-success {
-        color: $success;
-    }
-    [asc-color="light"],
-    .asc-color-light {
-        color: $light;
-    }
-    [asc-color="dark"],
-    .asc-color-dark {
-        color: $dark;
-    }
-    [asc-background-color="primary"],
-    .asc-background-color-primary {
-        background-color: mat-color($primary);
-    }
-    [asc-background-color="accent"],
-    .asc-background-color-accent {
-        background-color: mat-color($accent);
-    }
-    [asc-background-color="warn"],
-    .asc-background-color-warn {
-        background-color: mat-color($warn);
-    }
-    [asc-background-color="success"],
-    .asc-background-color-success {
-        background-color: $success;
-    }
-    [asc-background-color="light"],
-    .asc-background-color-light {
-        background-color: $light;
-    }
-    [asc-background-color="dark"],
-    .asc-background-color-dark {
-        background-color: $dark;
+    @media #{$mobile} {
+        font-size: $ku-type-base;
+        line-height: 1.5 * $ku-type-lg;
     }
 }
 
-.light-theme [asc-background-color="background"] {
-    background-color: #fafafa;
+p,
+li,
+span,
+strong,
+em {
+    > a,
+    > a:visited {
+        color: inherit;
+        border-bottom: 1px $primary;
+        box-shadow: inset 0 -0.25em 0 0 $primary;
+        text-decoration: none;
+        transition: box-shadow 500ms $transition-ease-in;
+        &:hover {
+            box-shadow: inset 0 -1.5em 0 0 $primary;
+        }
+    }
 }
 
-.dark-theme [asc-background-color="background"] {
-    background-color: #303030;
+code,
+pre code {
+    background: rgba(black, 0.1);
+    border-radius: 0.125rem;
+    font-family: monospace;
+    display: inline-block;
+    padding: 0 $ku-spacing-xs;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+li,
+div,
+span,
+strong,
+em,
+code,
+pre code {
+  line-height: 1.5;;
+}
+// background color
 
-.type-smaller {
-    font-size: 0.618rem;
+.ku-background-color-background,
+[ku-background-color="background"] {
+  @include themify($themes) {
+    background-color: themed('background');
   }
-  .type-small {
-    font-size: 0.875rem;
+}
+.ku-background-color-foreground,
+[ku-background-color="foreground"] {
+  @include themify($themes) {
+    background-color: themed('foreground');
   }
-  .type-base {
-    font-size: 1rem;
+}
+.ku-background-color-light,
+[ku-background-color="light"] {
+    background-color: $light;
+}
+.ku-background-color-dark,
+[ku-background-color="dark"] {
+    background-color: $dark;
+}
+.ku-background-color-primary,
+[ku-background-color="primary"] {
+    background-color: $primary;
+}
+.ku-background-color-accent,
+[ku-background-color="accent"] {
+    background-color: $accent;
+}
+.ku-background-color-warn,
+[ku-background-color="warn"] {
+    background-color: $warn;
+}
+.ku-background-color-success,
+[ku-background-color="success"] {
+    background-color: $success;
+}
+
+// border color
+.ku-border-color-foreground,
+[ku-border-color="foreground"] {
+  @include themify($themes) {
+    border-color: themed('foreground');
   }
-  .type-big {
-    font-size: 1.25rem;
+}
+.ku-border-color-background,
+[ku-border-color="background"] {
+  @include themify($themes) {
+    border-color: themed('background');
   }
-  .type-large {
-    font-size: 1.618rem;
-  }
-  .type-larger {
-    font-size: 2.618rem;
-  }
-  .type-largest {
-    font-size: 4.263rem;
-  }
-  .type-jumbo {
-    font-size: 6.854rem;
-  }
-  
+}
+.ku-border-color-light,
+[ku-border-color="light"] {
+    border-color: $light;
+}
+.ku-border-color-dark,
+[ku-border-color="dark"] {
+    border-color: $dark;
+}
+.ku-border-color-primary,
+[ku-border-color="primary"] {
+    border-color: $primary;
+}
+.ku-border-color-accent,
+[ku-border-color="accent"] {
+    border-color: $accent;
+}
+.ku-border-color-warn,
+[ku-border-color="warn"] {
+    border-color: $warn;
+}
+.ku-border-color-success,
+[ku-border-color="success"] {
+    border-color: $success;
+}

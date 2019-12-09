@@ -1,5 +1,13 @@
-// @import './assets/scss/themes/theming';
+@import 'includes';
+@import './assets/scss/themes/theming';
 @import './assets/scss/overrides/styles.override';
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
 html,
 body {
   font-size: 24px;
@@ -14,15 +22,9 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Poppins', Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-}
-
 .app-content {
-  margin: auto;
-  max-width: calc(100% - 10rem);
+  max-width: calc(100% - 5rem);
   width: 100%;
 }
 
-@import './assets/scss/themes/theme-utils.scss';
+@import './assets/scss/themes/utils.theme';
