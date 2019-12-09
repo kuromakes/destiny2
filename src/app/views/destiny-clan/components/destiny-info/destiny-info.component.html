@@ -1,0 +1,138 @@
+<ng-container *ngIf="bungie.clan | async; else Loading; let clan">
+    <section>
+        <h2 ku-color="primary">About</h2>
+        <p ku-color="foreground">
+            {{clan.detail.about}}
+        </p>
+    </section>
+    <section>
+        <h2 ku-color="primary">Founded</h2>
+        <p ku-color="foreground">
+          <strong ku-type="xl">
+              {{clan.detail?.creationDate | date}}
+          </strong>
+        </p>
+    </section>
+    <section>
+        <h2 ku-color="primary">
+            Members
+        </h2>
+        <p ku-color="foreground">
+            <strong ku-type="xxl">
+                {{clan.detail?.memberCount}}
+            </strong>
+        </p>
+    </section>
+</ng-container>
+
+<section>
+    <h2 ku-color="primary">Average Performance</h2>
+    <div *ngIf="allStats; else Loading" class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          KD
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'kd') | number:'1.2-2'}}
+        </span>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          KDA
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'kda') | number:'1.2-2'}}
+        </span>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          Efficiency
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'efficiency') | number:'1.2-2'}}
+        </span>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          Kills
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'kills') | number:'1.0-0'}}
+        </span>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          Kills
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'kills') | number:'1.0-0'}}
+        </span>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+        <h4 ku-color="foreground">
+          Defeats
+        </h4>
+        <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+          {{getAverageStat('pvp', 'defeats') | number:'1.0-0'}}
+        </span>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Raid Clears
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{getAverageStat('pve', 'raidClears') | number:'1.0-0'}}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Raid Time / Clear
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{bungie.parseSeconds(getAverageStat('pve', 'raidTimePerClear', true))}}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Raid Kills
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{getAverageStat('pve', 'raidKills') | number:'1.0-0'}}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Deaths Per Raid
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{getAverageStat('pve', 'deathsPerRaid') | number:'1.1-1'}}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Strike Kills
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{getAverageStat('pve', 'strikeKills', true) | number:'1.0-0'}}
+          </span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
+          <h4 ku-color="foreground">
+            Strike Clears
+          </h4>
+          <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
+            {{getAverageStat('pve', 'strikeClears') | number:'1.0-0'}}
+          </span>
+        </div>
+    </div>
+</section>
+
+<ng-template #Loading>
+    <div class="info-loading">
+        <mat-spinner
+          size="36"
+          color="primary"
+        ></mat-spinner>
+    </div>
+</ng-template>
