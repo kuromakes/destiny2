@@ -18,7 +18,7 @@
             ku-background-color="background"
             ku-color="primary"
           >
-              Roster
+              <span ku-type="base">Roster</span>
           </button>
           <button
             routerLink="leaderboards"
@@ -27,7 +27,7 @@
             ku-background-color="background"
             ku-color="primary"
           >
-              Leaderboards
+              <span ku-type="base">Leaderboards</span>
           </button>
           <button
             routerLink="info"
@@ -36,7 +36,7 @@
             ku-background-color="background"
             ku-color="primary"
           >
-              Info
+              <span ku-type="base">Info</span>
           </button>
         </div>
         <div *ngIf="clanData | async; let clan">
@@ -47,7 +47,7 @@
               target="_blank"
               title="Request to Join"
           >
-            Request to Join
+              <span ku-type="base">Request to Join</span>
           </a>
         </div>
       </div>

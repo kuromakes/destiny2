@@ -151,14 +151,14 @@
                     class="d2-roster-name"
                     ku-color="foreground"
                 >
-                    Username
+                    span
                 </mat-header-cell>
                 <mat-cell
                     *matCellDef="let player"
                     class="d2-roster-name"
                     ku-color="foreground"
                 >
-                    {{player.name}}
+                    <span>{{player.name}}</span>
                 </mat-cell>
             </ng-container>
 
@@ -197,7 +197,7 @@
                     class="d2-roster-profile"
                 >
                     <button mat-flat-button color="primary">
-                        View Profile
+                        <span ku-type="base">View Profile</span>
                     </button>
                 </mat-cell>
             </ng-container>

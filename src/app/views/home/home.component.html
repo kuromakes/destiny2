@@ -23,7 +23,7 @@
             [(value)]="clanName"
           ></app-input>
           <button mat-flat-button color="primary" (click)="search()">
-            Search
+            <span ku-type="base">Search</span>
           </button>
           <ng-container *ngIf="searchResults | async">
             <a

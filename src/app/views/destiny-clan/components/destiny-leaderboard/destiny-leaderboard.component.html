@@ -51,7 +51,7 @@
                     Rank
                 </mat-header-cell>
                 <mat-cell *matCellDef="let player" color="primary" class="d2-leaderboard-rank">
-                    {{player.rank}}
+                    <span ku-color="foreground">{{player.rank}}</span>
                 </mat-cell>
             </ng-container>
 
@@ -60,7 +60,7 @@
                     Player
                 </mat-header-cell>
                 <mat-cell *matCellDef="let player" class="d2-leaderboard-name">
-                    <span>{{player.player.name}}</span>
+                    <span ku-color="foreground">{{player.player.name}}</span>
                 </mat-cell>
             </ng-container>
 
