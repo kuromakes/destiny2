@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewChild
 import { Destroyer, LeaderboardItem, RosterItem } from '@models';
 import { BehaviorSubject } from 'rxjs';
 import { BackdropComponent } from '@components/backdrop/backdrop.component';
+import { BungieService } from '@service';
 
 @Component({
     selector: 'app-destiny-leaderboard',
@@ -28,7 +29,7 @@ export class DestinyLeaderboardComponent extends Destroyer {
 
     @ViewChild('Player', { static: false }) playerBackdrop: BackdropComponent;
 
-    constructor(private cd: ChangeDetectorRef) {
+    constructor(public bungie: BungieService, private cd: ChangeDetectorRef) {
         super();
     }
 

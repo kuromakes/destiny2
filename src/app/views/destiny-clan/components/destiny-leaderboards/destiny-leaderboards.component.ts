@@ -4,6 +4,7 @@ import { take } from 'rxjs/operators';
 import { BackdropComponent } from '@components/backdrop/backdrop.component';
 import { RosterItem, LeaderboardItem } from '@models/destiny';
 import { BungieService } from '@service/bungie.service';
+import { SEOService } from '@service';
 
 @Component({
   selector: 'app-destiny-leaderboards',
@@ -49,11 +50,15 @@ export class DestinyLeaderboardsComponent implements OnInit {
 
   @ViewChild(BackdropComponent, { static: false }) backdrop: BackdropComponent;
 
-  constructor(public bungie: BungieService, private cd: ChangeDetectorRef) {
+  constructor(public bungie: BungieService, private cd: ChangeDetectorRef, private seo: SEOService) {
 
   }
 
   ngOnInit() {
+    const clan = this.bungie.clan.value;
+    if (clan) {
+      this.seo.updateTitle(`${clan.name} Leaderboards`);
+    }
     this.bungie.getRoster().pipe(take(1)).subscribe((response: any) => {
       if (response) {
         this.bungie.getLeaderboards(response).pipe(take(1)).subscribe(leaderboards => {

@@ -36,12 +36,12 @@
 <button class="view-full-leaderboard" mat-stroked-button color="primary" (click)="viewFullLeaderboard()">View Full Leaderboard</button>
 <app-backdrop #FullLeaderboard>
     <div class="full-leaderboard-wrap" ku-background-color="background">
-        <table class="mat-elevation-z3" mat-table [dataSource]="leaderboard">
+        <table class="destiny-leaderboard-table" mat-table [dataSource]="leaderboard">
             <ng-container matColumnDef="icon">
                 <mat-header-cell *matHeaderCellDef class="d2-leaderboard-icon"></mat-header-cell>
                 <mat-cell *matCellDef="let player; let i = index" class="d2-leaderboard-icon">
                     <div class="d2-leaderboard-icon-wrap">
-                        <img [src]="'https://www.bungie.net/' + player.player.icon" alt="{{player.player.name}}">
+                        <img [src]="bungie.getIconUrl(player.player.icon)" alt="{{player.player.name}}">
                     </div>
                 </mat-cell>
             </ng-container>
