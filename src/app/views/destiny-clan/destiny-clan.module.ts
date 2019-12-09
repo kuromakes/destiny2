@@ -6,7 +6,7 @@ import { DestinyStatsComponent } from './components/destiny-stats/destiny-stats.
 import { DestinyLeaderboardComponent } from './components/destiny-leaderboard/destiny-leaderboard.component';
 import { DestinyLeaderboardsComponent } from './components/destiny-leaderboards/destiny-leaderboards.component';
 import { DestinyClanComponent } from './destiny-clan.component';
-import { BackdropComponentModule, HeroComponentModule } from '@components';
+import { BackdropComponentModule, HeroComponentModule, InputComponentModule } from '@components';
 import { DestinyClanRoutingModule } from './destiny-clan.routing.module';
 import { MaterialModule } from 'src/app/material.module';
 import { DestinyInfoComponent } from './components/destiny-info/destiny-info.component';
@@ -26,7 +26,8 @@ const components = [
     DestinyClanRoutingModule,
     MaterialModule,
     BackdropComponentModule,
-    HeroComponentModule
+    HeroComponentModule,
+    InputComponentModule
   ],
   declarations: [ DestinyClanComponent, ...components ]
 })
