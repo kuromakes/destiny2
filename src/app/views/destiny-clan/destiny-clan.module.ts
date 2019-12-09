@@ -5,7 +5,10 @@ import { DestinyProfileComponent } from './components/destiny-profile/destiny-pr
 import { DestinyStatsComponent } from './components/destiny-stats/destiny-stats.component';
 import { DestinyLeaderboardComponent } from './components/destiny-leaderboard/destiny-leaderboard.component';
 import { DestinyLeaderboardsComponent } from './components/destiny-leaderboards/destiny-leaderboards.component';
-import { MaterialModule } from '../../material.module';
+import { DestinyClanComponent } from './destiny-clan.component';
+import { BackdropComponentModule, HeroComponentModule } from '@components';
+import { DestinyClanRoutingModule } from './destiny-clan.routing.module';
+import { MaterialModule } from 'src/app/material.module';
 
 const components = [
   DestinyRosterComponent,
@@ -18,10 +21,12 @@ const components = [
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    DestinyClanRoutingModule,
+    MaterialModule,
+    BackdropComponentModule,
+    HeroComponentModule
   ],
-  declarations: [ ...components ],
-  exports: []
+  declarations: [ DestinyClanComponent, ...components ]
 })
 export class DestinyClanModule {
 

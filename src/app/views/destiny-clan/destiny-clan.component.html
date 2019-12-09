@@ -1,0 +1,19 @@
+<app-hero size="large" [bannerUrl]="'/assets/images/ascendant-banner-image-commander.jpg'">
+  <h1 *ngIf="clanData | async; let data" ku-color="primary">
+    {{data.detail?.name + ' [' + data.detail?.clanInfo?.clanCallsign + ']'}}
+  </h1>
+</app-hero>
+<div class="destiny-nav">
+  <button routerLink="roster" mat-flat-button ku-background-color="background" ku-color="primary">
+      Roster
+  </button>
+  <button mat-flat-button ku-background-color="background" ku-color="primary">
+      About
+  </button>
+  <button routerLink="leaderboards" mat-flat-button ku-background-color="background" ku-color="primary">
+      Leaderboards
+  </button>
+</div>
+<div class="app-content">
+    <router-outlet></router-outlet>
+</div>
