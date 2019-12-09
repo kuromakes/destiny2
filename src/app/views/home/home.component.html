@@ -1,20 +1,46 @@
 <app-hero size="large" [bannerUrl]="'/assets/images/ascendant-destiny-2-banner.jpg'">
   <h1 ku-color="light">Destiny 2 Clan Viewer</h1>
-  <p ku-color="light">
-    View rosters, player stats, stat leaderboards, and more for any Destiny 2 clan.
-  </p>
-  <p ku-color="light">
-    Bookmark your clan's URL and share with your clanmates.
-  </p>
 </app-hero>
 <div class="app-content">
   <div class="row">
-      <div class="col-xs-10 offset-xs-2 col-md-4 offset-md-1 title-block" ku-background-color="primary">
-          <h1 ku-color="dark">Find Your Clan</h1>
+      <div class="col-xs-10 offset-xs-2 col-md-4 offset-md-1">
+          <div class="title-block" ku-background-color="primary">
+              <h1 ku-color="dark">Find Your Clan</h1>
+          </div>
+          <p ku-color="foreground">
+              View rosters, player stats, stat leaderboards, and more for any Destiny 2 clan.
+          </p>
+          <p ku-color="foreground">
+              Bookmark your clan's URL and share with your clanmates.
+          </p>
       </div>
-      <div class="col-xs-12 col-md-7">
+      <div class="col-xs-12 col-md-6 offset-md-1">
         <div class="clan-search">
-          <app-input [fullWidth]="true" [debounce]="300" [(value)]="clanName"></app-input>
+          <app-input
+            placeholder="Search for a clan..."
+            [fullWidth]="true"
+            [debounce]="300"
+            [(value)]="clanName"
+          ></app-input>
+          <button mat-flat-button color="primary" (click)="search()">
+            Search
+          </button>
+          <ng-container *ngIf="searchResults | async">
+            <a
+              *ngFor="let result of searchResults | async"
+              class="clan-search-result"
+              routerLink="clan/{{result.groupId}}"
+            >
+              <h2 ku-color="primary">
+                {{result.name}} [{{result.clanInfo?.clanCallsign}}]
+              </h2>
+              <div>
+                <span ku-color="foreground">
+                  {{result.memberCount}} members
+                </span>
+              </div>
+            </a>
+          </ng-container>
         </div>
       </div>
   </div>

@@ -7,6 +7,7 @@
 }
 
 .title-block {
+  margin-bottom: $ku-spacing-lg;
   margin-top: -$ku-spacing-xl;
   padding: $ku-spacing-lg;
   position: relative;
@@ -16,9 +17,23 @@
     margin: 0;
     max-width: 360px;
   }
+  @media #{$mobile} {
+    h1 {
+      font-size: $ku-type-xl;
+    }
+  }
 }
 
 .clan-search {
-  padding-left: $ku-spacing-md;
   padding-top: $ku-spacing-lg;
+  app-input,
+  button {
+    margin: $ku-spacing-md 0;
+  }
+}
+
+.clan-search-result {
+  display: block;
+  padding: $ku-spacing-md;
+  text-decoration: none;
 }
