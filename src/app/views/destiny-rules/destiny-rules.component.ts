@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Destroyer } from '../../models/destroyer';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil, map, switchMap } from 'rxjs/operators';
+import { takeUntil, map, switchMap, take } from 'rxjs/operators';
 import { trigger, transition, query, stagger, animate, style } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
 interface BanList {
     weapons: string[];
@@ -31,13 +32,25 @@ interface BanList {
         ])
     ]
 })
-export class DestinyRulesComonent extends Destroyer {
+export class DestinyRulesComponent extends Destroyer {
 
     public banList = new BehaviorSubject<BanList>(null);
 
     public weaponFilter$ = new BehaviorSubject<string>('');
 
     public armorFilter$ = new BehaviorSubject<string>('');
+
+    constructor(private http: HttpClient) {
+        super();
+        const url = `https://ascendant.gg/api/ruleset/destiny2banlist`;
+        this.http.get<BanList>(url).pipe(
+            take(1)
+        ).subscribe(
+            banList => {
+                this.banList.next(banList);
+            }
+        );
+    }
 
     get weaponList(): Observable<string[]> {
         return this.weaponFilter$.pipe(

@@ -1,5 +1,5 @@
-mat-card {
-    margin-bottom: 1.5rem;
+section {
+    margin: 1rem 0;
     h2,
     h3,
     p {
@@ -18,14 +18,10 @@ ul {
     }
 }
 
-mat-form-field {
+app-input {
+    display: block;
     margin-top: 1rem;
     padding: 0 1rem;
-    width: 100%;
-    input {
-        display: block;
-        width: 100%;
-    }
 }
 
 mat-tab-group {

@@ -10,7 +10,11 @@ const routes: Routes = [
   {
     path: 'clan',
     loadChildren: () => import('./views/destiny-clan/destiny-clan.module').then(m => m.DestinyClanModule)
-  }   
+  },
+  {
+    path: 'scrim-rules',
+    loadChildren: () => import ('./views/destiny-rules/destiny-rules.module').then(m => m.DestinyRulesComponentModule)
+  }
 ]
 
 @NgModule({

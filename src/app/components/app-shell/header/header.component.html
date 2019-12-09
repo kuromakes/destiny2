@@ -29,6 +29,7 @@
           routerLink="/"
           ku-type="sm"
           ku-type-transform="uppercase"
+          (click)="close()"
         >
           Home
         </a>
@@ -36,9 +37,10 @@
       <li>
         <a
           class="nav-menu-item"
-          routerLink="/rules"
+          routerLink="/scrim-rules"
           ku-type="sm"
           ku-type-transform="uppercase"
+          (click)="close()"
         >
           Scrim Rules
         </a>
