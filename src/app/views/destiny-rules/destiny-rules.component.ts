@@ -10,7 +10,7 @@ interface BanList {
 }
 
 @Component({
-    selector: 'asc-destiny-rules',
+    selector: 'app-destiny-rules',
     templateUrl: './destiny-rules.component.html',
     styleUrls: ['./destiny-rules.component.scss'],
     animations: [
