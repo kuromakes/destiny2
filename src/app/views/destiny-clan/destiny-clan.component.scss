@@ -1,4 +1,6 @@
+@import 'themes/themify';
 @import 'includes';
+
 .destiny-nav {
   align-items: center;
   display: flex;
@@ -26,7 +28,6 @@ h1 {
 .is-active {
   position: relative;
   &::after {
-    background: $primary;
     content: '';
     display: block;
     height: 2px;
