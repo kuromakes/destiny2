@@ -10,4 +10,44 @@
       <span ku-color="foreground">デスティニー2</span>
     </div>
   </a>
+  <div class="nav-icon-target" ku-color="foreground" (click)="toggle()">
+    <div class="nav-icon" [class.is-open]="navOpen | async">
+      <svg height="2" width="24">
+        <rect fill="currentColor" height="2" width="24" />
+      </svg>
+      <svg height="2" width="24">
+        <rect fill="currentColor" height="2" width="24" />
+      </svg>
+    </div>
+  </div>
+  <div class="nav-overlay" [class.is-open]="navOpen | async" (click)="close()"></div>
+  <div class="nav-menu-wrap" [class.is-open]="navOpen | async">
+    <ul class="nav-menu">
+      <li>
+        <a
+          class="nav-menu-item"
+          routerLink="/rules"
+          ku-type="sm"
+          ku-type-transform="uppercase"
+        >
+          Scrim Rules
+        </a>
+      </li>
+    </ul>
+    <ul class="nav-menu">
+      <li>
+        <div
+          class="nav-menu-item"
+          ku-type="sm"
+          ku-type-transform="uppercase"
+          (click)="install()"
+        >
+          <mat-icon style="margin-right: 0.5rem">
+            save_alt
+          </mat-icon>
+          Install
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>

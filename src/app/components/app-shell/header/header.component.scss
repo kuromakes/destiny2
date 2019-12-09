@@ -1,8 +1,8 @@
 @import 'includes';
 @import 'themes/themify';
 .nav {
-  align-items: center;
   display: flex;
+  justify-content: space-between;
   left: 0;
   padding: $ku-spacing-md;
   position: fixed;
@@ -47,6 +47,132 @@
     .nav-logo-text {
       display: none;
     }
+  }
+}
+
+.nav-icon-target {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.nav-icon {
+  color: inherit;
+  height: 1rem;
+  position: relative;
+  width: 1rem;
+  @include z-index-4;
+  svg {
+    display: block;
+    position: absolute;
+    -webkit-transition: 600ms $transition-ease-in;
+    transition: 600ms $transition-ease-in;
+    &:first-child {
+      top: 9px;
+    }
+    &:last-child {
+      top: 15px;
+      width: 16px;
+      right: 0;
+    }
+  }
+  &.is-open {
+    color: $primary;
+    svg {
+      top: 11px;
+      &:first-child {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+      &:last-child {
+        width: 24px;
+        right: auto;
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+      }
+    }
+  }
+  @media #{$mobile} {
+    svg rect {
+      fill: $light;
+    }
+  }
+}
+
+.nav-menu-wrap {
+  background: rgba($dark, 0.99);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-width: 10rem;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  transition: 600ms $transition-ease-in;
+  width: 25%;
+  @include z-index-3;
+  &.is-open {
+    box-shadow: -$ku-spacing-xs 0 0 0 rgba(black, 0.25);
+    right: 0;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 4.5rem 0 1rem;
+  li {
+    color: $light;
+    a,
+    a:hover {
+      box-shadow: none;
+    }
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.nav-menu-item {
+  align-items: center;
+  background: rgba(0, 0, 0, 0);
+  color: $light;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  letter-spacing: 0.125rem;
+  line-height: 2.5rem;
+  padding: 0 1rem;
+  text-decoration: none;
+  transition: 300ms;
+  width: 100%;
+  &:hover {
+    background: $primary;
+    color: $dark;
+  }
+}
+
+.nav-overlay {
+  background: rgba($dark, 0.75);
+  height: 100vh;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  transition: 600ms ease;
+  top: 0;
+  width: 100vw;
+  visibility: hidden;
+  @include z-index-2;
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
