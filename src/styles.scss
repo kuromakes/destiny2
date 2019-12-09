@@ -25,6 +25,11 @@ body {
 .app-content {
   max-width: calc(100% - 5rem);
   width: 100%;
+  @media #{$mobile} {
+    max-width: none;
+    padding-left: $ku-spacing-md;
+    padding-right: $ku-spacing-md;
+  }
 }
 
 @import './assets/scss/themes/utils.theme';

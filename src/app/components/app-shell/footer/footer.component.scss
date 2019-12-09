@@ -1,4 +1,7 @@
 @import 'includes';
 section.footer {
   padding: $ku-spacing-lg 4.5rem;
+  @media #{$mobile} {
+    padding: $ku-spacing-lg 0;
+  }
 }

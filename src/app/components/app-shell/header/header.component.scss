@@ -1,21 +1,30 @@
 @import 'includes';
+@import 'themes/themify';
 .nav {
   align-items: center;
   display: flex;
   left: 0;
-  padding: 1rem;
+  padding: $ku-spacing-md;
   position: fixed;
   top: 0;
   width: 100%;
+  @include z-index-6;
+  @media #{$mobile} {
+    background: $dark;
+    padding: 0;
+  }
 }
 
 .nav-logo {
+  cursor: pointer;
   flex: 0;
+  text-decoration: none;
   app-logo {
     align-items: center;
     display: flex;
     height: 2.5rem;
     justify-content: center;
+    transition: 300ms ease;
     width: 2.5rem;
   }
   .nav-logo-text {
@@ -23,11 +32,21 @@
     display: flex;
     justify-content: center;
     letter-spacing: $ku-spacing-xs;
-    margin-top: $ku-spacing-md;
+    margin: $ku-spacing-md auto 0;
     text-align: center;
     text-orientation: upright;
-    width: 100%;
     writing-mode: vertical-rl;
+  }
+  &:hover {
+    app-logo {
+      background: $primary;
+      color: $dark;
+    }
+  }
+  @media #{$mobile} {
+    .nav-logo-text {
+      display: none;
+    }
   }
 }
 

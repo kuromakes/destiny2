@@ -1,8 +1,12 @@
+@import 'includes';
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-x: hidden;
+  @media #{$mobile} {
+    padding-top: 2.5rem;
+  }
 }
 
 app-header {
@@ -12,6 +16,9 @@ app-header {
 section#app-body {
   flex: 1;
   padding-left: 4.5rem;
+  @media #{$mobile} {
+    padding-left: 0;
+  }
 }
 
 app-footer {
