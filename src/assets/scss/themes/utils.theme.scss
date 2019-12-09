@@ -2,6 +2,94 @@
 @import './themify';
 
 // type
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: $ku-type-xl;
+}
+h2 {
+    font-size: $ku-type-lg;
+}
+h3 {
+    font-size: $ku-type-md;
+}
+h4 {
+    font-size: $ku-type-base;
+}
+
+p,
+a,
+li,
+div,
+span,
+strong,
+em {
+    @media #{$desktop-xl} {
+        font-size: $ku-type-lg;
+        line-height: $ku-type-xl;
+    }
+    @media #{$tablet}, #{$desktop} {
+        font-size: $ku-type-md;
+        line-height: 1.5 * $ku-type-lg;
+    }
+    @media #{$mobile} {
+        font-size: $ku-type-base;
+        line-height: 1.5 * $ku-type-lg;
+    }
+}
+
+p,
+li,
+span,
+strong,
+em {
+    > a,
+    > a:visited {
+        color: inherit;
+        border-bottom: 1px $primary;
+        box-shadow: inset 0 -0.25em 0 0 $primary;
+        text-decoration: none;
+        transition: box-shadow 500ms $transition-ease-in;
+        &:hover {
+            box-shadow: inset 0 -1.5em 0 0 $primary;
+        }
+    }
+}
+
+code,
+pre code {
+    background: rgba(black, 0.1);
+    border-radius: 0.125rem;
+    font-family: monospace;
+    display: inline-block;
+    padding: 0 $ku-spacing-xs;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+li,
+div,
+span,
+strong,
+em,
+code,
+pre code {
+  line-height: 1.5;;
+}
+
 .ku-type-xs,
 [ku-type="xs"] {
     font-size: $ku-type-xs;
@@ -134,93 +222,6 @@
     opacity: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    font-weight: 700;
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
-
-h1 {
-    font-size: $ku-type-xl;
-}
-h2 {
-    font-size: $ku-type-lg;
-}
-h3 {
-    font-size: $ku-type-md;
-}
-h4 {
-    font-size: $ku-type-base;
-}
-
-p,
-a,
-li,
-div,
-span,
-strong,
-em {
-    @media #{$desktop-xl} {
-        font-size: $ku-type-lg;
-        line-height: $ku-type-xl;
-    }
-    @media #{$tablet}, #{$desktop} {
-        font-size: $ku-type-md;
-        line-height: 1.5 * $ku-type-lg;
-    }
-    @media #{$mobile} {
-        font-size: $ku-type-base;
-        line-height: 1.5 * $ku-type-lg;
-    }
-}
-
-p,
-li,
-span,
-strong,
-em {
-    > a,
-    > a:visited {
-        color: inherit;
-        border-bottom: 1px $primary;
-        box-shadow: inset 0 -0.25em 0 0 $primary;
-        text-decoration: none;
-        transition: box-shadow 500ms $transition-ease-in;
-        &:hover {
-            box-shadow: inset 0 -1.5em 0 0 $primary;
-        }
-    }
-}
-
-code,
-pre code {
-    background: rgba(black, 0.1);
-    border-radius: 0.125rem;
-    font-family: monospace;
-    display: inline-block;
-    padding: 0 $ku-spacing-xs;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-p,
-a,
-li,
-div,
-span,
-strong,
-em,
-code,
-pre code {
-  line-height: 1.5;;
-}
 // background color
 
 .ku-background-color-background,
