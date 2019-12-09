@@ -13,13 +13,13 @@
   position: relative;
   @include z-index-1;
   h1 {
-    font-size: $ku-type-xxl;
+    font-size: $ku-type-xl;
     margin: 0;
     max-width: 360px;
   }
-  @media #{$mobile} {
+  @media #{$desktop} {
     h1 {
-      font-size: $ku-type-xl;
+      font-size: $ku-type-xxl;
     }
   }
 }
