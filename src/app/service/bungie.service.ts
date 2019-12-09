@@ -1,15 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { forkJoin, Observable, zip, of, BehaviorSubject, Subscription } from 'rxjs';
-import { map, switchMap, shareReplay, takeUntil } from 'rxjs/operators';
+import { map, switchMap, shareReplay, takeUntil, take } from 'rxjs/operators';
 import { BungieProfile, DestinyCharacter, DestinyPlayerLookup, DestinyProfile, DestinyPvEStats, DestinyPvPStats, RosterItem } from '../models/destiny';
 import { environment } from '../../environments/environment';
 import { Destroyer } from '@models';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BungieService extends Destroyer {
+export class BungieService extends Destroyer implements OnInit {
 
   private readonly rootUrl = 'https://www.bungie.net/platform';
 
@@ -23,12 +24,20 @@ export class BungieService extends Destroyer {
 
   private _clanId: number;
 
-  private _rosterSubscription: Subscription;
-
   public roster = new BehaviorSubject<RosterItem[]>([]);
 
-  constructor(private http: HttpClient) {
+  public clan = new BehaviorSubject<any>(null);
+
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
     super();
+  }
+
+  ngOnInit() {
+    if (this.activatedRoute.snapshot.params) {
+      if (this.activatedRoute.snapshot.params.clanId) {
+        this.setClanId(this.activatedRoute.snapshot.params.clanId);
+      }
+    }
   }
 
   get clanId(): number {
@@ -36,16 +45,23 @@ export class BungieService extends Destroyer {
   }
 
   set clanId(id: number) {
-    console.log('NEW CLAN ID:::', id);
     this._clanId = id;
-    if (this._rosterSubscription) {
-      this._rosterSubscription.unsubscribe();
-    }
-    this._rosterSubscription = this.getRoster(id).pipe(
-      takeUntil(this.destroy$)
+    // get clan data
+    this.getClan(id).pipe(
+      take(1)
+    ).subscribe(
+      clan => {
+        this.clan.next(clan);
+      },
+      err => {
+        console.error('Unexpected failure retrieving clan data', err);
+      }
+    );
+    // get clan roster
+    this.getRoster(id).pipe(
+      take(1)
     ).subscribe(
       roster => {
-        console.log('UPDATED ROSTER:::', roster)
         this.roster.next(roster);
       },
       err => console.error('Bungie service failed to update roster subject', err)
@@ -64,6 +80,13 @@ export class BungieService extends Destroyer {
           return response.Response;
         }
       })
+    );
+  }
+
+  public searchClans(input: object): Observable<any> {
+    const url = `${this.rootUrl}/groupv2/search/`;
+    return this.http.post<any>(url, input, this.httpOptions).pipe(
+      map(results => results.Response)
     );
   }
 
@@ -300,6 +323,13 @@ export class BungieService extends Destroyer {
       hoursPlayed += (` ${minutes}m`);
     }
     return hoursPlayed;
+  }
+
+  public getIconUrl(original: string): string {
+    if (original.startsWith('http')) {
+      return original;
+    }
+    return `https://www.bungie.net/${original}`
   }
 
   private parseBungieStats(input: any): { pvp: DestinyPvPStats, pve: DestinyPvEStats } {
