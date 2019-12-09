@@ -104,7 +104,13 @@
         </mat-table>
     </ng-template>
 
-    <mat-paginator id="clanRosterPaginator" [pageSizeOptions]="[10, 25, 50, 100]" ku-color="foreground"></mat-paginator>
+    <mat-paginator
+        id="clanRosterPaginator"
+        [pageSize]="pageSize"
+        [pageIndex]="0"
+        [pageSizeOptions]="pageSizeOptions"
+        ku-color="foreground"
+    ></mat-paginator>
 
 <app-backdrop (isOpenChange)="updateRoute($event)">
     <app-destiny-profile [player]="selectedPlayer"></app-destiny-profile>

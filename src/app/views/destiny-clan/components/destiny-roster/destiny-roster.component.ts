@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -14,9 +14,12 @@ import { BungieService, RoutingService, SEOService } from '@service';
   styleUrls: ['./destiny-roster.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DestinyRosterComponent extends Destroyer implements OnInit {
+export class DestinyRosterComponent extends Destroyer implements AfterViewInit {
 
   public roster: BehaviorSubject<RosterItem[]>;
+  public pageSizeOptions: number[] = [10, 25, 50, 100];
+  public pageSize = 10;
+  public pageIndex = 0;
   public rosterTableColumnNames: string[] = ['icon', 'name', 'status', 'profile'];
   public dataSource: MatTableDataSource<RosterItem>;
   public selectedDestinyId: string;
@@ -39,7 +42,7 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
     this.roster = new BehaviorSubject<RosterItem[]>([]);
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     const clan = this.bungie.clan.value;
     if (clan) {
       this.seo.updateTitle(`${clan.name} Roster`);
@@ -50,6 +53,8 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
       roster => {
         this.roster.next(roster);
         this.dataSource = new MatTableDataSource(this.roster.value);
+        this.paginator.pageSize = 10;
+        this.paginator.length = roster.length;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.loadPlayerByUrl();
