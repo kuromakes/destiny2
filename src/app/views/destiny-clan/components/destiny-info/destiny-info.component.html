@@ -1,9 +1,7 @@
 <ng-container *ngIf="bungie.clan | async; else Loading; let clan">
     <section>
         <h2 ku-color="primary">About</h2>
-        <p ku-color="foreground">
-            {{clan.detail.about}}
-        </p>
+        <p ku-color="foreground" [innerHTML]="clan.detail.about"></p>
     </section>
     <section>
         <h2 ku-color="primary">Founded</h2>
@@ -90,7 +88,7 @@
             Raid Time / Clear
           </h4>
           <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
-            {{bungie.parseSeconds(getAverageStat('pve', 'raidTimePerClear', true))}}
+            {{bungie.parseSeconds(getAverageStat('pve', 'raidTimePerClear'))}}
           </span>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 average-stat">
@@ -114,7 +112,7 @@
             Strike Kills
           </h4>
           <span ku-type="xxl" ku-color="primary" ku-type-weight="bold">
-            {{getAverageStat('pve', 'strikeKills', true) | number:'1.0-0'}}
+            {{getAverageStat('pve', 'strikeKills') | number:'1.0-0'}}
           </span>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 average-stat">

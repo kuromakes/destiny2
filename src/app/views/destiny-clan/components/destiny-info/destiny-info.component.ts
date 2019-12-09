@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { Destroyer } from '@models';
 import { BungieService, SEOService } from '@service';
 import { takeUntil, take, switchMap } from 'rxjs/operators';
@@ -13,7 +13,11 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
 
   private allStats: any[];
 
-  constructor(public bungie: BungieService, private cd: ChangeDetectorRef, private seo: SEOService) {
+  constructor(
+    public bungie: BungieService,
+    private cd: ChangeDetectorRef,
+    private seo: SEOService
+    ) {
     super();
   }
 
@@ -29,13 +33,16 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
       (leaderboards: any[]) => {
         this.allStats = leaderboards;
         this.cd.markForCheck();
+      },
+      err => {
+        console.error('Unexpected failure retrieving average clan stats', err);
       }
     )
   }
 
   // returns average of all clan members for a given stat
   // optional argument `compress` allows for large numbers without hitting infinity
-  getAverageStat(category: string, stat: string, compress?: boolean): number {
+  getAverageStat(category: string, stat: string): number {
     let average: number;
     let total = 0;
     let size = 0;
@@ -45,20 +52,12 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
         if (stats) {
           let targetStat = stats[stat];
           if (targetStat && !isNaN(+targetStat) && targetStat !== Infinity) {
-            if (compress) {
-              targetStat = +targetStat / 1000;
-            }
             total += +targetStat;
             size++;
-          } else {
-            console.error('Stat not found:', stat);
           }
         }
       });
       average = total / size;
-      if (compress) {
-        average = average * 1000;
-      }
     }
     return average;
   }
