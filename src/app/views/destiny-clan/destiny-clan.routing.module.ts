@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DestinyClanComponent } from './destiny-clan.component';
 import { DestinyRosterComponent } from './components/destiny-roster/destiny-roster.component';
 import { DestinyLeaderboardsComponent } from './components/destiny-leaderboards/destiny-leaderboards.component';
+import { DestinyInfoComponent } from './components/destiny-info/destiny-info.component';
 
 const routes: Routes = [{
     path: ':clanId',
@@ -31,6 +32,10 @@ const routes: Routes = [{
         {
             path: 'leaderboards',
             component: DestinyLeaderboardsComponent
+        },
+        {
+            path: 'info',
+            component: DestinyInfoComponent
         }
     ]
 }];
