@@ -1,3 +1,11 @@
+/**
+ * @TODO:
+ * -  PWA stuff
+ * -  Destiny Rules (needs ascendant API tho)
+ * -  Roster search
+ * -  I think that's it?
+ */
+
 import { Component } from '@angular/core';
 
 @Component({
