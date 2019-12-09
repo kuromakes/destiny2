@@ -40,7 +40,13 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
   }
 
   ngOnInit() {
-    this.bungie.roster.pipe(takeUntil(this.destroy$)).subscribe(
+    const clan = this.bungie.clan.value;
+    if (clan) {
+      this.seo.updateTitle(`${clan.name} Roster`);
+    }
+    this.bungie.getRoster().pipe(
+      take(1)
+    ).subscribe(
       roster => {
         this.roster.next(roster);
         this.dataSource = new MatTableDataSource(this.roster.value);
@@ -48,7 +54,7 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
         this.dataSource.sort = this.sort;
         this.loadPlayerByUrl();
       }
-    )
+    );
   }
 
   public searchRoster(filter: string): void {
@@ -61,7 +67,6 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
   public viewPlayer(player: RosterItem): void {
     this.selectedPlayer = player;
     this.backdrop.open();
-    // this.routing.location.replaceState('player/' + player.destinyId + '/' + player.bungieId);
     this.routing.router.navigate(['player', player.destinyId, player.bungieId], {
       relativeTo: this.activeRoute,
       replaceUrl: true
@@ -74,21 +79,31 @@ export class DestinyRosterComponent extends Destroyer implements OnInit {
 
   public updateRoute(event: boolean): void {
     if (!event) {
-      // this.routing.setLocationState('/clan' + (this.bungie.clanId ? '/' + this.bungie.clanId : ''));
       this.routing.router.navigate(['clan', this.bungie.clanId || ''], {
         relativeTo: this.activeRoute.root,
         replaceUrl: true
       });
+      const clan = this.bungie.clan.value;
+      if (clan) {
+        this.seo.updateTitle(`${clan.name} Roster`);
+        this.seo.updateDescription();
+      }
     }
   }
 
   private loadPlayerByUrl(): void {
-    const routeParams = this.activeRoute.snapshot.params;
-    if (routeParams && routeParams.destinyId && routeParams.bungieId) {
+    const route = this.activeRoute.firstChild;
+    if (
+      route &&
+      route.snapshot &&
+      route.snapshot.params &&
+      route.snapshot.params.destinyId &&
+      route.snapshot.params.bungieId
+    ) {
       this.roster.pipe(
         map(players => {
           for (const player of players) {
-            if (player.destinyId === routeParams.destinyId) {
+            if (player.destinyId === route.snapshot.params.destinyId) {
               return player;
             }
           }

@@ -29,8 +29,14 @@ app-destiny-stats {
     flex: 1;
 }
 
+app-hero {
+    flex: 0;
+}
+
 :host {
     display: flex;
     flex: 1;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
