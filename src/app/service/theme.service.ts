@@ -32,11 +32,18 @@ export class ThemeService {
       this._theme = newTheme;
       this.activeTheme.next(newTheme);
       // update DOM
-      const body = document.querySelector('body');
-      this.renderer.removeClass(body, previous + '-theme');
-      this.renderer.addClass(body, newTheme + '-theme')
+      this.renderer.removeClass(document.body, previous + '-theme');
+      this.renderer.addClass(document.body, newTheme + '-theme')
       // save locally
       this.cacheTheme();
+    }
+  }
+
+  public toggle(): void {
+    if (this.theme === 'dark') {
+      this.setTheme('light');
+    } else {
+      this.setTheme('dark');
     }
   }
 

@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PwaService } from '@service/pwa.service';
+import { PwaService, ThemeService } from '@service';
+import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,14 @@ export class AppHeaderComponent {
 
   public navOpen = new BehaviorSubject<boolean>(false);
 
-  constructor(private pwa: PwaService) {
+  @ViewChild('ThemeToggle', {static: false})
+  themeToggle: MatSlideToggle;
+
+  constructor(
+    public themeService: ThemeService,
+    private pwa: PwaService,
+    private cd: ChangeDetectorRef
+  ) {
 
   }
 
@@ -31,6 +39,18 @@ export class AppHeaderComponent {
 
   public install(): void {
     this.pwa.promptEvent.prompt();
+  }
+
+  public setTheme(event: MatSlideToggleChange): void {
+    const dark = event.checked;
+    console.log(`setTheme(${dark})`);
+    this.themeService.setTheme(dark ? 'dark' : 'light');
+  }
+
+  public toggleTheme(): void {
+    this.themeService.toggle();
+    this.themeToggle.toggle();
+    this.cd.markForCheck();
   }
 
 }

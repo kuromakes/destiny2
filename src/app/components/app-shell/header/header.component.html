@@ -26,6 +26,16 @@
       <li>
         <a
           class="nav-menu-item"
+          routerLink="/"
+          ku-type="sm"
+          ku-type-transform="uppercase"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          class="nav-menu-item"
           routerLink="/rules"
           ku-type="sm"
           ku-type-transform="uppercase"
@@ -35,6 +45,22 @@
       </li>
     </ul>
     <ul class="nav-menu">
+      <li>
+        <div
+          class="nav-menu-item no-hover"
+          ku-type="sm"
+          ku-type-transform="uppercase"
+        >
+          <mat-slide-toggle
+            #ThemeToggle
+            color="primary"
+            [checked]="(themeService.activeTheme | async) === 'dark'"
+            (change)="setTheme($event)"
+          >
+            <span ku-type="sm">Dark Mode</span>
+          </mat-slide-toggle>
+        </div>
+      </li>
       <li>
         <div
           class="nav-menu-item"

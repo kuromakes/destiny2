@@ -151,16 +151,21 @@
   cursor: pointer;
   display: flex;
   font-weight: bold;
+  height: 2.5rem;
   letter-spacing: 0.125rem;
   line-height: 2.5rem;
   padding: 0 1rem;
   text-decoration: none;
   transition: 300ms;
   width: 100%;
-  &:hover {
+  &:hover:not(.no-hover) {
     background: $primary;
     color: $dark;
   }
+}
+
+mat-slide-toggle {
+  margin-right: $ku-spacing-sm;
 }
 
 .nav-overlay {
@@ -168,6 +173,7 @@
   height: 100vh;
   left: 0;
   opacity: 0;
+  pointer-events: initial;
   position: fixed;
   transition: 600ms ease;
   top: 0;

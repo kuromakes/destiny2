@@ -5,14 +5,15 @@ import { AppHeaderComponent } from './header/header.component';
 import { AppFooterComponent } from './footer/footer.component';
 import { AppShellComponent } from './app-shell.component';
 import { AppLogoModule } from '../logo/logo.module';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     AppLogoModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule
   ],
   declarations: [
     AppHeaderComponent,
