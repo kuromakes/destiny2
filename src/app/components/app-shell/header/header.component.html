@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav class="nav" ku-background-color="background">
   <a class="nav-logo" routerLink="/">
     <app-logo
       [width]="'1.5rem'"
@@ -21,12 +21,13 @@
     </div>
   </div>
   <div class="nav-overlay" [class.is-open]="navOpen | async" (click)="close()"></div>
-  <div class="nav-menu-wrap" [class.is-open]="navOpen | async">
+  <div class="nav-menu-wrap" [class.is-open]="navOpen | async" ku-background-color="background">
     <ul class="nav-menu">
       <li>
         <a
           class="nav-menu-item"
           routerLink="/"
+          ku-color="foreground"
           ku-type="sm"
           ku-type-transform="uppercase"
           (click)="close()"
@@ -38,6 +39,7 @@
         <a
           class="nav-menu-item"
           routerLink="/scrim-rules"
+          ku-color="foreground"
           ku-type="sm"
           ku-type-transform="uppercase"
           (click)="close()"
@@ -59,13 +61,14 @@
             [checked]="(themeService.activeTheme | async) === 'dark'"
             (change)="setTheme($event)"
           >
-            <span ku-type="sm">Dark Mode</span>
+            <span ku-type="sm" ku-color="foreground">Dark Mode</span>
           </mat-slide-toggle>
         </div>
       </li>
       <li *ngIf="pwa.promptEvent">
         <div
           class="nav-menu-item"
+          ku-color="foreground"
           ku-type="sm"
           ku-type-transform="uppercase"
           (click)="install()"

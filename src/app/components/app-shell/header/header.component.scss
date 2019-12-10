@@ -10,8 +10,7 @@
   top: 0;
   width: 100%;
   @include z-index-6;
-  @media #{$mobile} {
-    background: $dark;
+  @media #{$mobile}, #{$tablet} {
     padding: 0;
   }
 }
@@ -45,7 +44,7 @@
       color: $dark;
     }
   }
-  @media #{$mobile} {
+  @media #{$mobile}, #{$tablet} {
     .nav-logo-text {
       display: none;
     }
@@ -98,15 +97,9 @@
       }
     }
   }
-  @media #{$mobile} {
-    svg rect {
-      fill: $light;
-    }
-  }
 }
 
 .nav-menu-wrap {
-  background: rgba($dark, 0.99);
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -133,7 +126,6 @@
   margin: 0;
   padding: 4.5rem 0 1rem;
   li {
-    color: $light;
     a,
     a:hover {
       box-shadow: none;
@@ -147,7 +139,6 @@
 .nav-menu-item {
   align-items: center;
   background: rgba(0, 0, 0, 0);
-  color: $light;
   cursor: pointer;
   display: flex;
   font-weight: bold;
