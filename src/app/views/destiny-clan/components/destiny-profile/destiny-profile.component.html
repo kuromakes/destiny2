@@ -13,14 +13,14 @@
                             </span>
                         </h2>
                         <div>
-                            <span ku-color="primary">
-                                <span ku-color="light">Total Hours</span>
+                            <span ku-color="primary" ku-type="base">
+                                <span ku-color="light" ku-type="base" style="margin-right: 0.5rem">Total Hours</span>
                                 {{destinyProfile.hoursPlayed}}
                             </span>
                         </div>
                         <div>
-                            <span ku-color="primary">
-                                <span ku-color="light">Last Played</span>
+                            <span ku-color="primary" ku-type="base">
+                                <span ku-color="light" ku-type="base" style="margin-right: 0.5rem">Last Played</span>
                                 {{destinyProfile.lastPlayed | date}}
                             </span>
                         </div>
@@ -32,7 +32,9 @@
                             [matMenuTriggerFor]="characterSelection"
                             style="padding-right: 0.5em"
                         >
-                            {{selectedCharacterClass ? selectedCharacterClass : 'All'}}
+                            <span ku-type="base">
+                                {{selectedCharacterClass ? selectedCharacterClass : 'All'}}
+                            </span>
                             <mat-icon>expand_more</mat-icon>
                         </button>
                         <mat-menu
@@ -43,14 +45,18 @@
                                 mat-menu-item
                                 (click)="loadCharacter(); selectedCharacterClass = 'All'"
                             >
-                                All
+                                <span ku-type="base">
+                                    All
+                                </span>
                             </button>
                             <ng-container *ngFor="let character of destinyProfile.characters">
                                 <button
                                     mat-menu-item
                                     (click)="loadCharacter(character)"
                                 >
-                                    {{character.characterClass}}
+                                    <span ku-type="base">
+                                        {{character.characterClass}}
+                                    </span>
                                 </button>
                             </ng-container>
                         </mat-menu>
