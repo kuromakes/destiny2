@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { MatSlideToggle, MatSlideToggleChange } from '@angular/material';
+import { Destroyer } from '@models';
 import { PwaService, ThemeService } from '@service';
-import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
+import { BehaviorSubject, fromEvent } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +11,11 @@ import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppHeaderComponent {
+export class AppHeaderComponent extends Destroyer {
 
   public navOpen = new BehaviorSubject<boolean>(false);
-
-  @HostListener("window:resize", []) get isMobile() {
-    return window.innerWidth < 960;
-  }
+  
+  public isMobile$: BehaviorSubject<boolean>;
 
   @ViewChild('ThemeToggle', {static: false})
   themeToggle: MatSlideToggle;
@@ -25,7 +25,9 @@ export class AppHeaderComponent {
     public pwa: PwaService,
     private cd: ChangeDetectorRef
   ) {
-
+    super();
+    this.isMobile$ = new BehaviorSubject(window.innerWidth < 960);
+    this.resizeListener();
   }
 
   public open(): void {
@@ -55,6 +57,14 @@ export class AppHeaderComponent {
     this.themeService.toggle();
     this.themeToggle.toggle();
     this.cd.markForCheck();
+  }
+
+  private resizeListener(): void {
+    fromEvent(window, 'resize').pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.isMobile$.next(window.innerWidth < 960);
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-<nav class="nav" [attr.ku-background-color]="isMobile ? 'background' : ''">
+<nav class="nav" [class.ku-background-color-background]="isMobile$ | async">
   <a class="nav-logo" routerLink="/">
     <app-logo
       [width]="'1.5rem'"
