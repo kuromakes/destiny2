@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kuroi-destiny2": {
+    "destiny2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kuroi-destiny2",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kuroi-destiny2:build"
+            "browserTarget": "destiny2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kuroi-destiny2:build:production"
+              "browserTarget": "destiny2:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kuroi-destiny2:build"
+            "browserTarget": "destiny2:build"
           }
         },
         "test": {
@@ -118,15 +118,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kuroi-destiny2:serve"
+            "devServerTarget": "destiny2:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "kuroi-destiny2:serve:production"
+              "devServerTarget": "destiny2:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "kuroi-destiny2"
+  "defaultProject": "destiny2"
 }
