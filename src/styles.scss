@@ -19,7 +19,7 @@ body {
 
 body {
   -webkit-overflow-scrolling: touch;
-  @media #{$mobile} {
+  @media #{$mobile}, #{$tablet} {
     padding-top: 2.5rem;
   }
 }
@@ -27,7 +27,7 @@ body {
 .app-content {
   max-width: calc(100% - 5rem);
   width: 100%;
-  @media #{$mobile} {
+  @media #{$mobile}, #{$tablet} {
     max-width: none;
     padding-left: $ku-spacing-md;
     padding-right: $ku-spacing-md;

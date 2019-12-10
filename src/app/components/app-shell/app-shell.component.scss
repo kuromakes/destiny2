@@ -13,7 +13,7 @@ app-header {
 section#app-body {
   flex: 1;
   padding-left: 4.5rem;
-  @media #{$mobile} {
+  @media #{$mobile}, #{$tablet} {
     padding-left: 0;
   }
 }
