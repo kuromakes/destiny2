@@ -1,27 +1,7 @@
-# D2Clans
+# Destiny 2 Clan Viewer Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
+Ever wanted a website all about your Destiny 2 clan? Well, I've tried different ways of helping people in the community build just that, but it turns out coding is hard! Without a computer science education, replicating something like [https://ascendant.gg](ascendant.gg) is pretty much impossible.
 
-## Development server
+So, I decided to just make a public website to show all D2 clans with bookmarkable URLs and open source the whole thing. All my Destiny 2 related code can be found in this repository, and you're free to use it however you'd like, if you want to try to create your own version of [https://ascendant.gg](ascendant.gg), or your own Destiny 2 clan website.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Yes, you can contact me with questions, but I can't guarantee my response time.
