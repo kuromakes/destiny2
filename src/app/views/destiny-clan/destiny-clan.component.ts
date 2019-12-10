@@ -27,14 +27,16 @@ export class DestinyClanComponent extends Destroyer implements OnInit {
     const snapshot = this.activatedRoute.snapshot;
     if (snapshot && snapshot.params && snapshot.params.clanId) {
       const id = snapshot.params.clanId;
-      this.bungie.setClanId(snapshot.params.clanId);
+      this.bungie.setClanId(id);
       this.bungie.clan.pipe(
         takeUntil(this.destroy$)
       ).subscribe(
         clan => {
           if (clan) {
             this.clanData.next(clan);
-            this.seo.updateTitle(clan.name);
+            if (clan.detail && clan.detail.name) {
+              this.seo.updateTitle(clan.detail.name);
+            }
           }
         }
       )

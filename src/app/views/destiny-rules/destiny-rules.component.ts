@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil, map, switchMap, take } from 'rxjs/operators';
 import { trigger, transition, query, stagger, animate, style } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { SEOService } from '@service';
 
 interface BanList {
     weapons: string[];
@@ -40,8 +41,10 @@ export class DestinyRulesComponent extends Destroyer {
 
     public armorFilter$ = new BehaviorSubject<string>('');
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private seo: SEOService) {
         super();
+        this.seo.updateTitle('Scrim Rules');
+        this.seo.updateDescription('Interactive display for the official ruleset for competitive Destiny 2');
         const url = `https://ascendant.gg/api/ruleset/destiny2banlist`;
         this.http.get<BanList>(url).pipe(
             take(1)
