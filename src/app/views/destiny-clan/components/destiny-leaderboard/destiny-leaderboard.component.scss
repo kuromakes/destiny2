@@ -9,15 +9,6 @@ table.destiny-leaderboard-table {
 mat-row {
     cursor: pointer;
     padding: $ku-spacing-sm 0;
-    @media #{$mobile} {
-        display: flex;
-        flex-direction: column;
-        padding: $ku-spacing-md;
-        mat-cell {
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
 }
 
 mat-row,
