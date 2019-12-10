@@ -8,6 +8,11 @@
     @include justify-center;
 }
 
+app-input {
+    display: block;
+    margin-bottom: $ku-spacing-lg;
+}
+
 mat-table#clanRoster {
     background: transparent;
     width: 100%;
