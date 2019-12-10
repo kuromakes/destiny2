@@ -11,7 +11,7 @@ import { takeUntil, take, switchMap } from 'rxjs/operators';
 })
 export class DestinyInfoComponent extends Destroyer implements OnInit {
 
-  private allStats: any[];
+  public allStats: any[];
 
   constructor(
     public bungie: BungieService,

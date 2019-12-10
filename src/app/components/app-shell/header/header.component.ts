@@ -18,7 +18,7 @@ export class AppHeaderComponent {
 
   constructor(
     public themeService: ThemeService,
-    private pwa: PwaService,
+    public pwa: PwaService,
     private cd: ChangeDetectorRef
   ) {
 

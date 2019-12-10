@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 172.16" [ngStyle]="{height: height, width: width, color: color || 'inherit'}">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 172.16" [ngStyle]="{height: height, width: width}">
   <g>
     <g>
       <path fill="currentColor" d="M173.32,112.05H95.19V98.68h63.59V84.14H95.19V72.51h58V0H21.91V72.51H77.55V84.14H17.25V98.68h60.3v13.37H1.16v15.51H173.32ZM95.19,14.15h39.94V29.47H95.19Zm0,28.69h39.94V58.55H95.19ZM77.55,58.55H39.16V42.84H77.55Zm0-29.08H39.16V14.15H77.55Z" />
