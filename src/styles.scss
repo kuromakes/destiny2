@@ -1,6 +1,5 @@
 @import 'includes';
 @import './assets/scss/themes/theming';
-@import './assets/scss/overrides/styles.override';
 @import '~@angular/cdk/overlay-prebuilt.css';
 
 * {
@@ -36,3 +35,4 @@ body {
 }
 
 @import './assets/scss/themes/utils.theme';
+@import './assets/scss/overrides/styles.override';
