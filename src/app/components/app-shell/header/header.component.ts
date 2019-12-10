@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PwaService, ThemeService } from '@service';
 import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
@@ -12,6 +12,10 @@ import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
 export class AppHeaderComponent {
 
   public navOpen = new BehaviorSubject<boolean>(false);
+
+  @HostListener("window:resize", []) get isMobile() {
+    return window.innerWidth < 960;
+  }
 
   @ViewChild('ThemeToggle', {static: false})
   themeToggle: MatSlideToggle;
