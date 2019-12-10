@@ -41,14 +41,14 @@
                 class="d2-roster-name"
                 ku-color="foreground"
             >
-                <span>Player</span>
+                <span ku-type="base" ku-color="foreground">Player</span>
             </mat-header-cell>
             <mat-cell
                 *matCellDef="let player"
                 class="d2-roster-name"
                 ku-color="foreground"
             >
-                <span>{{player.name}}</span>
+                <span ku-type="base" ku-color="foreground">{{player.name}}</span>
             </mat-cell>
         </ng-container>
 
@@ -58,7 +58,7 @@
                 class="d2-roster-status"
                 ku-color="foreground"
             >
-                <span>Status</span>
+                <span ku-type="base" ku-color="foreground">Status</span>
             </mat-header-cell>
             <mat-cell
                 *matCellDef="let player"
@@ -66,10 +66,10 @@
                 class="d2-roster-status"
             >
                 <ng-container *ngIf="player.status === 'Online' else offline">
-                    <strong ku-color="success">{{player.status}}</strong>
+                    <strong ku-type="base" ku-color="success">{{player.status}}</strong>
                 </ng-container>
                 <ng-template #offline>
-                    <span ku-color="foreground">{{player.status}}</span>
+                    <span ku-type="base" ku-color="foreground">{{player.status}}</span>
                 </ng-template>
             </mat-cell>
         </ng-container>
@@ -80,7 +80,7 @@
                 class="d2-roster-profile"
                 ku-color="foreground"
             >
-                <span>Profile</span>
+                <span ku-type="base" ku-color="foreground">Profile</span>
             </mat-header-cell>
             <mat-cell
                 *matCellDef="let player"

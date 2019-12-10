@@ -11,19 +11,19 @@
 
     <ng-container matColumnDef="player">
         <mat-header-cell *matHeaderCellDef class="d2-leaderboard-name">
-            Player
+            <span ku-type="base" ku-color="foreground">Player</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let player" class="d2-leaderboard-name">
-            <span>{{player.player.name}}</span>
+            <span ku-type="base" ku-color="foreground">{{player.player.name}}</span>
         </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="value">
         <mat-header-cell *matHeaderCellDef class="d2-leaderboard-status">
-            {{leaderboardTitle}}
+            <span ku-type="base" ku-color="foreground">{{leaderboardTitle}}</span>
         </mat-header-cell>
         <mat-cell *matCellDef="let player" color="primary" class="d2-leaderboard-status">
-            {{player.value}}
+            <span ku-type="base" ku-color="foreground">{{player.value}}</span>
         </mat-cell>
     </ng-container>
 
@@ -48,7 +48,7 @@
 
             <ng-container matColumnDef="rank">
                 <mat-header-cell *matHeaderCellDef class="d2-leaderboard-rank">
-                    Rank
+                    <span ku-type="base" ku-color="foreground">Rank</span>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let player" color="primary" class="d2-leaderboard-rank">
                     <span ku-color="foreground">{{player.rank}}</span>
@@ -57,19 +57,19 @@
 
             <ng-container matColumnDef="player">
                 <mat-header-cell *matHeaderCellDef class="d2-leaderboard-name">
-                    Player
+                    <span ku-type="base" ku-color="foreground">Player</span>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let player" class="d2-leaderboard-name">
-                    <span ku-color="foreground">{{player.player.name}}</span>
+                    <span ku-type="base" ku-color="foreground">{{player.player.name}}</span>
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="value">
                 <mat-header-cell *matHeaderCellDef class="d2-leaderboard-status">
-                    {{leaderboardTitle}}
+                    <span ku-type="base" ku-color="foreground">{{leaderboardTitle}}</span>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let player" color="primary" class="d2-leaderboard-status">
-                    {{player.value}}
+                    <span ku-type="base" ku-color="foreground">{{player.value}}</span>
                 </mat-cell>
             </ng-container>
 
