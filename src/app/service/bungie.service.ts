@@ -6,6 +6,7 @@ import { BungieProfile, DestinyCharacter, DestinyPlayerLookup, DestinyProfile, D
 import { environment } from '../../environments/environment';
 import { Destroyer } from '@models';
 import { ActivatedRoute } from '@angular/router';
+import { Leaderboard } from '@models/leaderboard';
 
 @Injectable({
   providedIn: 'root'
@@ -91,41 +92,37 @@ export class BungieService extends Destroyer implements OnInit {
   }
 
   public getRoster(id?: number): Observable<RosterItem[]> {
-    const url = `${this.rootUrl}/groupv2/${id || this.clanId}/members/`;
-    if (!this._roster) {
-      this._roster = this.http.get(url, this.httpOptions).pipe(
-        map((response: any) => {
-          const roster: RosterItem[] = [];
-          const data: any[] = response.Response.results;
-          if (data) {
-            data.forEach(player => {
-              if (player.destinyUserInfo && player.bungieNetUserInfo) {
-                roster.push({
-                  name: player.destinyUserInfo.displayName,
-                  icon: player.bungieNetUserInfo.iconPath,
-                  status: player.isOnline ? 'Online' : 'Offline',
-                  bungieId: player.bungieNetUserInfo.membershipId,
-                  destinyId: player.destinyUserInfo.membershipId,
-                  platform: player.destinyUserInfo.crossSaveOverride || player.destinyUserInfo.LastSeenDisplayNameType
-                });
-              }
-            });
-            roster.sort((a, b) => {
-              if (a.status > b.status) {
-                return -1;
-              } else if (a.status < b.status) {
-                return 1;
-              } else {
-                return 0;
-              }
-            });
-          }
-          return roster;
-        }),
-        shareReplay(1)
-      );
-    }
-    return this._roster;
+    const url = `${this.rootUrl}/groupv2/${id || this.clanId}/members/`
+    return this.http.get(url, this.httpOptions).pipe(
+      map((response: any) => {
+        const roster: RosterItem[] = [];
+        const data: any[] = response.Response.results;
+        if (data) {
+          data.forEach(player => {
+            if (player.destinyUserInfo && player.bungieNetUserInfo) {
+              roster.push({
+                name: player.destinyUserInfo.displayName,
+                icon: player.bungieNetUserInfo.iconPath,
+                status: player.isOnline ? 'Online' : 'Offline',
+                bungieId: player.bungieNetUserInfo.membershipId,
+                destinyId: player.destinyUserInfo.membershipId,
+                platform: player.destinyUserInfo.crossSaveOverride || player.destinyUserInfo.LastSeenDisplayNameType
+              });
+            }
+          });
+          roster.sort((a, b) => {
+            if (a.status > b.status) {
+              return -1;
+            } else if (a.status < b.status) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+        }
+        return roster;
+      })
+    )
   }
 
   public generateDestinyProfileById(destinyId: string, bungieId: string, platform: number): Observable<DestinyProfile> {
@@ -290,25 +287,20 @@ export class BungieService extends Destroyer implements OnInit {
     );
   }
 
-  public getLeaderboards(roster: RosterItem[]): Observable<{}> {
-    if (!this._leaderboards) {
-      this._leaderboards = (() => {
-        const playerStats = [];
-        roster.forEach(player => playerStats.push(
-          this.getOverallStats(player.destinyId, player.platform).pipe(
-            map((stats: any) => {
-              return {
-                player: player,
-                pvp: stats.pvp,
-                pve: stats.pve
-              }
-            })
-          )
-        ));
-        return zip(...playerStats).pipe(shareReplay(1));
-      })();
-    }
-    return this._leaderboards;
+  public getLeaderboards(roster: RosterItem[]): Observable<Leaderboard[]> {
+    const playerStats: Observable<Leaderboard>[] = [];
+    roster.forEach(player => playerStats.push(
+      this.getOverallStats(player.destinyId, player.platform).pipe(
+        map(stats => {
+          return {
+            player: player,
+            pvp: stats.pvp,
+            pve: stats.pve
+          }
+        })
+      )
+    ));
+    return zip<Leaderboard[]>(...playerStats)
   }
 
   public parseSeconds(seconds: number): string {

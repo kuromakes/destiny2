@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Destroyer } from '@models';
 import { BungieService, SEOService } from '@service';
-import { takeUntil, take, switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { throwError, of } from 'rxjs';
 
 @Component({
   selector: 'app-destiny-info',
@@ -16,28 +18,56 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
   constructor(
     public bungie: BungieService,
     private cd: ChangeDetectorRef,
-    private seo: SEOService
+    private seo: SEOService,
+    private activeRoute: ActivatedRoute
     ) {
     super();
   }
 
   ngOnInit() {
-    const clan = this.bungie.clan.value;
-    if (clan) {
-      this.seo.updateTitle(`${clan.name} Info`);
-    }
-    this.bungie.getRoster().pipe(
-      switchMap(roster => this.bungie.getLeaderboards(roster)),
-      take(1)
+    this.bungie.clan.pipe(
+      switchMap(clan => {
+        if (!clan) {
+          const params = this.activeRoute.snapshot.params;
+          if (params && params.clanId) {
+            const clanId = params.clanId
+            this.bungie.setClanId(clanId)
+            return of(null)
+          } else {
+            const parentRoute = this.activeRoute.parent.snapshot;
+            if (parentRoute && parentRoute.params && parentRoute.params.clanId) {
+              const clanId = parentRoute.params.clanId
+              this.bungie.setClanId(clanId)
+              return of(null)
+            }
+          }
+          // couldn't find id, so throw error
+          const err = new TypeError('Could not find clan ID')
+          return throwError(err)
+        } else {
+          const clanName = clan.name || clan.detail ? clan.detail.name : 'Clan'
+          this.seo.updateTitle(`${clanName} Info`);
+          return this.bungie.roster.pipe(switchMap(
+            roster => this.bungie.getLeaderboards(roster))
+          )
+        }
+      }),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$)
     ).subscribe(
       (leaderboards: any[]) => {
+        if (!leaderboards) {
+          console.warn('No respone for clan leaderboard info')
+          return
+        }
         this.allStats = leaderboards;
         this.cd.markForCheck();
       },
       err => {
         console.error('Unexpected failure retrieving average clan stats', err);
+        alert('Failed to load clan average stats. See browser console for more info or reload to try again.')
       }
-    )
+    );
   }
 
   // returns average of all clan members for a given stat

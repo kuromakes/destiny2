@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { take } from 'rxjs/operators';
+import { take, switchMap, takeUntil, filter, distinctUntilChanged } from 'rxjs/operators';
 import { BackdropComponent } from '@components/backdrop/backdrop.component';
 import { RosterItem, LeaderboardItem } from '@models/destiny';
 import { BungieService } from '@service/bungie.service';
 import { SEOService } from '@service';
+import { Destroyer } from '@models';
+import { ActivatedRoute } from '@angular/router';
+import { of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-destiny-leaderboards',
@@ -12,7 +15,7 @@ import { SEOService } from '@service';
   styleUrls: ['./destiny-leaderboards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DestinyLeaderboardsComponent implements OnInit {
+export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   @Input() roster: RosterItem[];
 
@@ -50,39 +53,74 @@ export class DestinyLeaderboardsComponent implements OnInit {
 
   @ViewChild(BackdropComponent, { static: false }) backdrop: BackdropComponent;
 
-  constructor(public bungie: BungieService, private cd: ChangeDetectorRef, private seo: SEOService) {
-
+  constructor(
+    public bungie: BungieService,
+    private cd: ChangeDetectorRef,
+    private seo: SEOService,
+    private activeRoute: ActivatedRoute
+  ) {
+    super();
   }
 
   ngOnInit() {
-    const clan = this.bungie.clan.value;
-    if (clan) {
-      this.seo.updateTitle(`${clan.name} Leaderboards`);
-    }
-    this.bungie.getRoster().pipe(take(1)).subscribe((response: any) => {
-      if (response) {
-        this.bungie.getLeaderboards(response).pipe(take(1)).subscribe(leaderboards => {
-          // pvp
-          this.kdLeaderboard = this.getKdLeaderboard(leaderboards);
-          this.kdaLeaderboard = this.getKdaLeaderboard(leaderboards);
-          this.efficiencyLeaderboard = this.getEfficiencyLeaderboard(leaderboards);
-          this.killsLeaderboard = this.getKillsLeaderboard(leaderboards);
-          this.assistsLeaderboard = this.getAssistsLeaderboard(leaderboards);
-          this.defeatsLeaderboard = this.getDefeatsLeaderboard(leaderboards);
-          // pve
-          this.raidClearsLeaderboard = this.getRaidClearsLeaderboard(leaderboards);
-          this.raidTimePerClearLeaderboard = this.getRaidRaidTimePerClearLeaderboard(leaderboards);
-          this.raidKillsLeaderboard = this.getRaidKillsLeaderboard(leaderboards);
-          this.deathsPerRaidLeaderboard = this.getDeathsPerRaidLeaderboard(leaderboards);
-          this.strikeClearsLeaderboard = this.getStrikeClearsLeaderboard(leaderboards);
-          this.strikeKillsLeaderboard = this.getStrikeKillsLeaderboard(leaderboards);
-          this.cd.markForCheck();
-        });
+    this.bungie.clan.pipe(
+      switchMap(clan => {
+        if (!clan) {
+          const params = this.activeRoute.snapshot.params;
+          if (params && params.clanId) {
+            const clanId = params.clanId
+            this.bungie.setClanId(clanId)
+            return of(null)
+          } else {
+            const parentRoute = this.activeRoute.parent.snapshot;
+            if (parentRoute && parentRoute.params && parentRoute.params.clanId) {
+              const clanId = parentRoute.params.clanId
+              this.bungie.setClanId(clanId)
+              return of(null)
+            }
+          }
+          // couldn't find id, so throw error
+          const err = new TypeError('Could not find clan ID')
+          return throwError(err)
+        } else {
+          const clanName = clan.name || clan.detail ? clan.detail.name : 'Clan'
+          this.seo.updateTitle(`${clanName} Leaderboards`)
+          return this.bungie.roster.pipe(
+            switchMap(roster => this.bungie.getLeaderboards(roster))
+          )
+        }
+      }),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$)
+    ).subscribe(
+      (leaderboards: RosterItem[]) => {
+        if (!leaderboards) {
+          console.warn('No response for clan leaderboards')
+          return;
+        }
+        // pvp
+        this.kdLeaderboard = this.getKdLeaderboard(leaderboards);
+        this.kdaLeaderboard = this.getKdaLeaderboard(leaderboards);
+        this.efficiencyLeaderboard = this.getEfficiencyLeaderboard(leaderboards);
+        this.killsLeaderboard = this.getKillsLeaderboard(leaderboards);
+        this.assistsLeaderboard = this.getAssistsLeaderboard(leaderboards);
+        this.defeatsLeaderboard = this.getDefeatsLeaderboard(leaderboards);
+        // pve
+        this.raidClearsLeaderboard = this.getRaidClearsLeaderboard(leaderboards);
+        this.raidTimePerClearLeaderboard = this.getRaidRaidTimePerClearLeaderboard(leaderboards);
+        this.raidKillsLeaderboard = this.getRaidKillsLeaderboard(leaderboards);
+        this.deathsPerRaidLeaderboard = this.getDeathsPerRaidLeaderboard(leaderboards);
+        this.strikeClearsLeaderboard = this.getStrikeClearsLeaderboard(leaderboards);
+        this.strikeKillsLeaderboard = this.getStrikeKillsLeaderboard(leaderboards);
+        this.cd.markForCheck();
+      },
+      err => {
+        this.failure = true;
+        this.cd.markForCheck();
+        console.error('Failed to load leaderboards', err);
+        alert('Failed to load clan leaderboards. See browser console for more info or reload to try again.')
       }
-    }, err => {
-      this.failure = true;
-      console.error('Failed to load leaderboards', err);
-    });
+    );
   }
 
   // pvp

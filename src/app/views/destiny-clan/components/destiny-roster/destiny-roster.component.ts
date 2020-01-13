@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, of, throwError } from 'rxjs';
+import { map, take, takeUntil, switchMap, distinctUntilChanged } from 'rxjs/operators';
 import { BackdropComponent } from '@components/backdrop/backdrop.component';
 import { DestinyProfileComponent } from '../destiny-profile/destiny-profile.component';
 import { Destroyer, RosterItem } from '@models';
@@ -43,43 +43,77 @@ export class DestinyRosterComponent extends Destroyer implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const clan = this.bungie.clan.value;
-    if (clan) {
-      this.seo.updateTitle(`${clan.name} Roster`);
-    }
-    this.bungie.getRoster().pipe(
-      take(1)
+    this.initRoster();
+  }
+
+  private initRoster(): void {
+    this.bungie.clan.pipe(
+      switchMap(clan => {
+        if (!clan) {
+          const params = this.activeRoute.snapshot.params
+          if (params && params.clanId) {
+            const clanId = params.clanId
+            this.bungie.setClanId(clanId)
+            return of(null)
+          } else {
+            const parentRoute = this.activeRoute.parent.snapshot;
+            if (parentRoute && parentRoute.params && parentRoute.params.clanId) {
+              const clanId = parentRoute.params.clanId
+              this.bungie.setClanId(clanId)
+              return of(null)
+            }
+          }
+          // couldn't find id, so throw error
+          const err = new TypeError('Could not find clan ID')
+          return throwError(err)
+        } else {
+          const clanName = clan.name || clan.detail ? clan.detail.name : 'Clan'
+          this.seo.updateTitle(`${clanName} Roster`)
+          return this.bungie.roster
+        }
+      }),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$)
     ).subscribe(
       roster => {
-        this.roster.next(roster);
-        this.dataSource = new MatTableDataSource(this.roster.value);
-        this.paginator.pageSize = 10;
-        this.paginator.length = roster.length;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.loadPlayerByUrl();
+        if (!roster) {
+          console.warn('Received invalid roster from Bungie', roster)
+          return
+        }
+        this.roster.next(roster)
+        this.dataSource = new MatTableDataSource(this.roster.value)
+        this.paginator.pageSize = 10
+        this.paginator.length = roster.length
+        this.dataSource.paginator = this.paginator
+        this.dataSource.sort = this.sort
+        this.loadPlayerByUrl()
+        this.cd.markForCheck()
+      },
+      err => {
+        console.error('Failed to get clan from bungie service', err)
+        alert('Failed to load clan roster. See browser console for more info or reload to try again.')
       }
-    );
+    )
   }
 
   public searchRoster(filter: string): void {
-    this.dataSource.filter = filter.trim().toLowerCase();
+    this.dataSource.filter = filter.trim().toLowerCase()
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+      this.dataSource.paginator.firstPage()
     }
   }
 
   public viewPlayer(player: RosterItem): void {
-    this.selectedPlayer = player;
-    this.backdrop.open();
+    this.selectedPlayer = player
+    this.backdrop.open()
     this.routing.router.navigate(['player', player.destinyId, player.bungieId], {
       relativeTo: this.activeRoute,
       replaceUrl: true
-    });
+    })
     this.routing
-    this.seo.updateTitle(`${player.name} on Destiny 2`);
-    this.seo.updateDescription(`Player stats for ${player.name} on Destiny 2`);
-    this.cd.markForCheck();
+    this.seo.updateTitle(`${player.name} on Destiny 2`)
+    this.seo.updateDescription(`Player stats for ${player.name} on Destiny 2`)
+    this.cd.markForCheck()
   }
 
   public updateRoute(event: boolean): void {
@@ -87,11 +121,11 @@ export class DestinyRosterComponent extends Destroyer implements AfterViewInit {
       this.routing.router.navigate(['clan', this.bungie.clanId || ''], {
         relativeTo: this.activeRoute.root,
         replaceUrl: true
-      });
-      const clan = this.bungie.clan.value;
+      })
+      const clan = this.bungie.clan.value
       if (clan) {
-        this.seo.updateTitle(`${clan.name} Roster`);
-        this.seo.updateDescription();
+        this.seo.updateTitle(`${clan.name} Roster`)
+        this.seo.updateDescription()
       }
     }
   }
@@ -115,8 +149,8 @@ export class DestinyRosterComponent extends Destroyer implements AfterViewInit {
         }),
         take(1)
       ).subscribe(player => {
-        this.viewPlayer(player);
-      });
+        this.viewPlayer(player)
+      })
     }
   }
 
