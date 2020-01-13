@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { BungieService, SEOService } from '@service';
 import { take, filter, takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
@@ -10,7 +10,7 @@ import { Destroyer } from '@models';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomePageComponent extends Destroyer {
+export class HomePageComponent extends Destroyer implements OnDestroy {
 
   public clanName: string
 
@@ -76,6 +76,14 @@ export class HomePageComponent extends Destroyer {
     } else {
       this.focused$.next()
       this.focused$.complete()
+    }
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy()
+    if (this.focused$) {
+      this.focused$.next();
+      this.focused$.complete();
     }
   }
 
