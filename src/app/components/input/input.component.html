@@ -9,6 +9,8 @@
       [ngClass]="cssClasses"
       [ngModel]="value"
       (ngModelChange)="handleInput($event)"
+      (focus)="setFocus(true)"
+      (blur)="setFocus(false)"
     ></textarea>
   </ng-container>
   
@@ -22,6 +24,8 @@
       [ngClass]="cssClasses"
       [ngModel]="value"
       (ngModelChange)="handleInput($event)"
+      (focus)="setFocus(true)"
+      (blur)="setFocus(false)"
     >
   </ng-container>
   

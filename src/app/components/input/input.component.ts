@@ -32,6 +32,9 @@ export class InputComponent extends Destroyer implements OnInit {
   @Output()
   valueChange = new EventEmitter<string>();
 
+  @Output()
+  focus = new EventEmitter<boolean>();
+
   private events = new Subject();
 
   constructor() {
@@ -67,6 +70,10 @@ export class InputComponent extends Destroyer implements OnInit {
 
   public handleInput(input: string): void {
     this.events.next(input);
+  }
+
+  public setFocus(focused: boolean): void {
+    this.focus.emit(focused);
   }
 
 }

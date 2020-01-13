@@ -4,8 +4,10 @@
 input,
 textarea {
   background: transparent;
+  border-radius: 0;
   padding: $ku-spacing-xs;
   transition: 300ms ease;
+  -webkit-appearnce: none;
   &.is-full-width {
     display: block;
     width: 100%;
