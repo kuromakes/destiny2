@@ -49,7 +49,6 @@ export class AppHeaderComponent extends Destroyer {
 
   public setTheme(event: MatSlideToggleChange): void {
     const dark = event.checked;
-    console.log(`setTheme(${dark})`);
     this.themeService.setTheme(dark ? 'dark' : 'light');
   }
 
