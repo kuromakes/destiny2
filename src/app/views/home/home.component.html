@@ -19,8 +19,8 @@
           <app-input
             placeholder="Search for a clan..."
             [fullWidth]="true"
-            [debounce]="300"
             [(value)]="clanName"
+            (focus)="handleSearchFocus($event)"
           ></app-input>
           <button mat-flat-button color="primary" (click)="search()">
             <span ku-type="base">Search</span>

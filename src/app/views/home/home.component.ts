@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BungieService, SEOService } from '@service';
-import { take } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { take, filter, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, fromEvent, Subject } from 'rxjs';
+import { Destroyer } from '@models';
 
 @Component({
   selector: 'app-home-page',
@@ -9,21 +10,27 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomePageComponent {
+export class HomePageComponent extends Destroyer {
 
-  public clanName: string;
+  public clanName: string
 
-  public searchResults = new BehaviorSubject<any[]>(null);
+  public searchResults = new BehaviorSubject<any[]>(null)
 
-  public isLoading = new BehaviorSubject<boolean>(false);
+  public isLoading = new BehaviorSubject<boolean>(false)
+
+  private focused$: Subject<void>
 
   constructor(private bungie: BungieService, private seo: SEOService) {
-    this.seo.resetTitle();
-    this.seo.updateDescription();
+    super()
+    this.seo.resetTitle()
+    this.seo.updateDescription()
   }
 
   public search(): void {
-    this.isLoading.next(true);
+    if (!this.clanName) {
+      return;
+    }
+    this.isLoading.next(true)
     this.bungie.searchClans({
       name: this.clanName.trim(),
       groupType: 1
@@ -32,15 +39,44 @@ export class HomePageComponent {
     ).subscribe(
       clans => {
         if (clans && clans.results) {
-          this.searchResults.next(clans.results);
+          this.searchResults.next(clans.results)
         }
-        this.isLoading.next(false);
+        this.isLoading.next(false)
       },
       err => {
-        console.error('Unexpected failure retrieving clan search results', err);
-        this.isLoading.next(false);
+        console.error('Unexpected failure retrieving clan search results', err)
+        this.isLoading.next(false)
+        alert('Uh oh, there was an error retrieving clan search. See console for more details.')
       }
-    );
+    )
+  }
+
+  private listenForSubmissionKeys(): void {
+    if (!this.focused$) {
+      this.focused$ = new Subject()
+    }
+    fromEvent<KeyboardEvent>(document, 'keydown').pipe(
+      filter(event => event && event.key && event.key.toLowerCase() === 'enter'),
+      takeUntil(this.focused$)
+    ).subscribe(
+      event => {
+        event.preventDefault()
+        event.stopPropagation()
+        this.search()
+      },
+      err => {
+        console.error('Unexpected failure in keyboard shortcut listener', err);
+      }
+    )
+  }
+
+  public handleSearchFocus(event: boolean): void {
+    if (event) {
+      this.listenForSubmissionKeys()
+    } else {
+      this.focused$.next()
+      this.focused$.complete()
+    }
   }
 
 }
