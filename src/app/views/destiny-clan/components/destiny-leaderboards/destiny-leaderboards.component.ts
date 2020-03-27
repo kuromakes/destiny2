@@ -127,7 +127,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getKdLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[]  = [];
-    const sorted = list.sort((a, b) => b.pvp.kd - a.pvp.kd);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.kd
+    ).sort((a, b) => b.pvp.kd - a.pvp.kd);
     sorted.forEach((player, rank)=> {
       result.push({
         player: player.player,
@@ -140,7 +142,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getKdaLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[]  = [];
-    const sorted = list.sort((a, b) => b.pvp.kda - a.pvp.kda);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.kda
+    ).sort((a, b) => b.pvp.kda - a.pvp.kda);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -153,7 +157,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getEfficiencyLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pvp.efficiency - a.pvp.efficiency);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.efficiency
+    ).sort((a, b) => b.pvp.efficiency - a.pvp.efficiency);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -166,7 +172,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getKillsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pvp.kills - a.pvp.kills);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.kills
+    ).sort((a, b) => b.pvp.kills - a.pvp.kills);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -179,7 +187,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getAssistsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pvp.assists - a.pvp.assists);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.assists
+    ).sort((a, b) => b.pvp.assists - a.pvp.assists);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -192,7 +202,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   private getDefeatsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pvp.defeats - a.pvp.defeats);
+    const sorted = list.filter(
+      player => player && player.pvp && player.pvp.defeats
+    ).sort((a, b) => b.pvp.defeats - a.pvp.defeats);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -207,7 +219,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getRaidClearsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pve.raidClears - a.pve.raidClears);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.raidClears
+    ).sort((a, b) => b.pve.raidClears - a.pve.raidClears);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -220,7 +234,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getRaidRaidTimePerClearLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => a.pve.raidTimePerClear - b.pve.raidTimePerClear);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.raidTimePerClear
+    ).sort((a, b) => a.pve.raidTimePerClear - b.pve.raidTimePerClear);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -233,7 +249,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getRaidKillsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pve.raidKills - a.pve.raidKills);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.raidKills
+    ).sort((a, b) => b.pve.raidKills - a.pve.raidKills);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -246,7 +264,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getDeathsPerRaidLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => a.pve.deathsPerRaid - b.pve.deathsPerRaid);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.deathsPerRaid
+    ).sort((a, b) => a.pve.deathsPerRaid - b.pve.deathsPerRaid);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -259,7 +279,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getStrikeClearsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pve.strikeClears - a.pve.strikeClears);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.strikeClears
+    ).sort((a, b) => b.pve.strikeClears - a.pve.strikeClears);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
@@ -272,7 +294,9 @@ export class DestinyLeaderboardsComponent extends Destroyer implements OnInit {
 
   public getStrikeKillsLeaderboard(list): LeaderboardItem[] {
     const result: LeaderboardItem[] = [];
-    const sorted = list.sort((a, b) => b.pve.strikeKills - a.pve.strikeKills);
+    const sorted = list.filter(
+      player => player && player.pve && player.pve.strikeKills
+    ).sort((a, b) => b.pve.strikeKills - a.pve.strikeKills);
     sorted.forEach((player, rank) => {
       result.push({
         player: player.player,
