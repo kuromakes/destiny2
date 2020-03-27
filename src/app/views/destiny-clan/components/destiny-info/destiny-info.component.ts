@@ -5,6 +5,15 @@ import { switchMap, takeUntil, distinctUntilChanged } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { throwError, of } from 'rxjs';
 
+interface CachedStatMap {
+  pvp: {
+    [key: string]: number;
+  }
+  pve: {
+    [key: string]: number;
+  }
+}
+
 @Component({
   selector: 'app-destiny-info',
   templateUrl: './destiny-info.component.html',
@@ -14,6 +23,11 @@ import { throwError, of } from 'rxjs';
 export class DestinyInfoComponent extends Destroyer implements OnInit {
 
   public allStats: any[];
+
+  private cachedStatMap: CachedStatMap = {
+    pvp: {},
+    pve: {}
+  }
 
   constructor(
     public bungie: BungieService,
@@ -73,6 +87,9 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
   // returns average of all clan members for a given stat
   // optional argument `compress` allows for large numbers without hitting infinity
   getAverageStat(category: string, stat: string): number {
+    if (this.cachedStatMap[category][stat]) {
+      return this.cachedStatMap[category][stat];
+    }
     let average: number;
     let total = 0;
     let size = 0;
@@ -89,33 +106,8 @@ export class DestinyInfoComponent extends Destroyer implements OnInit {
       });
       average = total / size;
     }
+    this.cachedStatMap[category][stat] = average;
     return average;
-  }
-
-  // returns value for the most occurrent stat value
-  getModeStat(category: string, stat: string): string {
-    const counter = {};
-    let result: string;
-    if (this.allStats) {
-      this.allStats.forEach(player => {
-        const stats = player[category];
-        if (stats) {
-          const entry = stats[stat];
-          if (counter[entry]) {
-            counter[entry]++;
-          } else {
-            counter[entry] = 1;
-          }
-        }
-      });
-      let highest = 0;
-      Object.keys(counter).forEach(entry => {
-        if (counter[entry] > highest) {
-          result = counter[entry];
-        }
-      })
-    }
-    return result;
   }
 
 }
